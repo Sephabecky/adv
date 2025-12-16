@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products | Aaron Agronomy Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .product-category {
+            margin-bottom: 60px;
+        }
+        
+        .category-title {
+            color: var(--primary-green);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-green);
+        }
+        
+        .price-list {
+            margin-top: 30px;
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .price-item:last-child {
+            border-bottom: none;
+        }
+        
+        .price-item-name {
+            font-weight: 500;
+        }
+        
+        .price-item-price {
+            color: var(--accent-green);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (same as index.html) -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-img">
+                    <img src="aaron logo.webp" alt="Aaron Agronomy Services Logo">
+                    <div class="img-fallback" style="display: none;">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                </div>
+                <div class="logo-text">Aaron <span>Agronomy</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="farm-assessment.html">Farm Assessment</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="LOGINS.html" class="btn btn-small">Log in</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="hero" style="background: linear-gradient(rgba(26, 71, 42, 0.9), rgba(26, 71, 42, 0.95)),url(image.png); min-height: 40vh; padding-top: 120px;">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Products</h1>
+                <p>Premium quality agricultural products for maximum yield and profitability</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fresh Pixies -->
+    <section id="pixies" class="product-category">
+        <div class="container">
+            <h2 class="category-title">Fresh Pixies</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="pixie1.webp" alt="Grade A Pixies">
+                    </div>
+                    <div class="product-info">
+                        <h3>Grade A Pixies</h3>
+                        <p class="product-description">Premium quality, large size pixies with perfect color and texture. Ideal for export and high-end markets.</p>
+                        <div class="price-item">
+                            <span class="price-item-name">Per Kg</span>
+                            <span class="price-item-price">150 KSh</span>
+                        </div>
+                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="pixie2.webp" alt="Grade B Pixies">
+                    </div>
+                    <div class="product-info">
+                        <h3>Grade B Pixies</h3>
+                        <p class="product-description">Good quality pixies suitable for local markets and processing. Excellent value for money.</p>
+                        <div class="price-item">
+                            <span class="price-item-name">Per Kg</span>
+                            <span class="price-item-price">150 KSh</span>
+                        </div>
+                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="pixie3.jpeg" alt="Bulk Pixies">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bulk Pixies</h3>
+                        <p class="product-description">For processing and juice making. Available in large quantities at wholesale prices.</p>
+                        <div class="price-item">
+                            <span class="price-item-name">Per 50Kg Bag</span>
+                            <span class="price-item-price">7,500 KSh</span>
+                        </div>
+                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Seedlings -->
+    <section id="seedlings" class="product-category" style="background-color: var(--light-green); padding: 60px 0;">
+        <div class="container">
+            <h2 class="category-title">Quality Seedlings</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="avoseed.webp" alt="Avocado Seedlings">
+                    </div>
+                    <div class="product-info">
+                        <h3>Avocado Seedlings</h3>
+                        <p class="product-description">Hass and Fuerte varieties. Grafted for early fruiting, disease-resistant with excellent yield potential.</p>
+                        <div class="price-list">
+                            <div class="price-item">
+                                <span class="price-item-name">per seedling</span>
+                                <span class="price-item-price">200 KSh</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-item-name"></span>
+                                <span class="price-item-price"></span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-item-name">Bulk (100+ seedlings)</span>
+                                <span class="price-item-price">200 ksh</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="manseed.webp" alt="Mango Seedlings">
+                    </div>
+                    <div class="product-info">
+                        <h3>Mango Seedlings</h3>
+                        <p class="product-description">Apple, Ngowe, and Kent varieties. Fast-growing with high yield potential. Grafted for early fruiting.</p>
+                        <div class="price-list">
+                            <div class="price-item">
+                                <span class="price-item-name">Apple Mango</span>
+                                <span class="price-item-price">200 KSh</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-item-name">Ngowe Mango</span>
+                                <span class="price-item-price">200 KSh</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-item-name">Kent Mango</span>
+                                <span class="price-item-price">200 KSh</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="pixseed.webp" alt="Pixie Seedlings">
+                    </div>
+                    <div class="product-info">
+                        <h3>Pixie Seedlings</h3>
+                        <p class="product-description">Sweet and colorful pixie seedlings. Ideal for both small-scale and commercial farming. Excellent market value.</p>
+                        <div class="price-item">
+                            <span class="price-item-name">Per Seedling</span>
+                            <span class="price-item-price">200 KSh</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-item-name">Bulk (50+ seedlings)</span>
+                            <span class="price-item-price">200 KSh each</span>
+                        </div>
+                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pixie Juices -->
+    <section id="juices" class="product-category">
+        <div class="container">
+            <h2 class="category-title">Fresh Pixie Juices</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="500ml.webp" alt="500ml Pixie Juice">
+                    </div>
+                    <div class="product-info">
+                        <h3>500ml Bottle</h3>
+                        <p class="product-description">Perfect for individual consumption. 100% natural, no preservatives. Rich in vitamins and antioxidants.</p>
+                        <div class="price-item">
+                            <span class="price-item-name">Per Bottle</span>
+                            <span class="price-item-price">150 KSh</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-item-name">Pack of 6</span>
+                            <span class="price-item-price">800 KSh</span>
+                        </div>
+                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="ilitre.webp" alt="1 Liter Pixie Juice">
+                    </div>
+                    <div class="product-info">
+                        <h3>1 Liter Bottle</h3>
+                        <p class="product-description">Family size pixie juice. Freshly squeezed, pasteurized for longer shelf life while maintaining nutrients.</p>
+                        <div class="price-item">
+                            <span class="price-item-name">Per Bottle</span>
+                            <span class="price-item-price">250 KSh</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-item-name">Pack of 4</span>
+                            <span class="price-item-price">900 KSh</span>
+                        </div>
+                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="bulk.webp" alt="Bulk Pixie Juice">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bulk Orders</h3>
+                        <p class="product-description">For restaurants, hotels, and events. Available in 5L and 10L containers. Custom labeling available.</p>
+                        <div class="price-item">
+                            <span class="price-item-name">5 Liter Container</span>
+                            <span class="price-item-price">1,000 KSh</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-item-name">10 Liter Container</span>
+                            <span class="price-item-price">1,800 KSh</span>
+                        </div>
+                        <a href="contact.html" class="btn" style="margin-top: 20px;">Request Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="background-color: var(--primary-green); color: white; text-align: center; padding: 60px 0;">
+        <div class="container">
+            <h2 style="margin-bottom: 20px;">Need Custom Quantities?</h2>
+            <p style="margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Contact us for bulk orders, wholesale prices, or custom product requirements. We work with farmers, retailers, and processors.
+            </p>
+            <a href="contact.html" class="btn" style="background-color: white; color: var(--primary-green);">Contact for Bulk Orders</a>
+        </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Aaron Agronomy Services</h3>
+                    <p>Professional agronomy services, quality seedlings, and comprehensive farm assessments.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="farm-assessment.html">Farm Assessment</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Kalamba, Nzaui, Makueni</li>
+                        <li><i class="fas fa-phone"></i> +257 25993004</li>
+                        <li><i class="fas fa-envelope"></i> aaronagronomyservices@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Aaron Agronomy Services. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

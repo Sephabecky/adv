@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Aaron Agronomy Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(rgba(26, 71, 42, 0.9), rgba(26, 71, 42, 0.95)), url('pixie1.webp');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0 80px;
+            margin-top: -80px;
+            padding-top: 180px;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .mission-card, .vision-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .mission-icon, .vision-icon {
+            font-size: 3rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+        }
+        
+        .team-section {
+            background-color: var(--light-green);
+            padding: 60px 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .team-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 25px;
+        }
+        
+        .team-info h4 {
+            color: var(--primary-green);
+            margin-bottom: 5px;
+        }
+        
+        .team-role {
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .stats-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: var(--primary-green);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .values-section {
+            padding: 60px 0;
+            background-color: var(--gray-bg);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .value-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--accent-green);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            width: 45%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--accent-green);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: -90px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-year {
+            left: -90px;
+        }
+       
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 60px;
+            }
+            
+            .timeline-year {
+                left: 0 !important;
+                right: auto !important;
+                top: 0;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-img">
+                    <img src="aaron logo.webp" alt="Aaron Agronomy Services Logo">
+                    <div class="img-fallback" style="display: none;">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                </div>
+                <div class="logo-text">Aaron <span>Agronomy</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="farm-assessment.html">Farm Assessment</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="LOGINS.html" class="btn btn-small">Log in</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+    </header>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>About Aaron Agronomy Services</h1>
+                <p>Transforming agriculture in Makueni County through innovation, expertise, and dedication</p>
+            </div>
+        </div>
+    </section>
+<!-- Our Story - Two Columns -->
+<section style="padding: 80px 0;">
+    <div class="container">
+        <div class="about-content">
+            <div class="section-title">
+                <h2>Our Story</h2>
+            </div>
+            
+            <div class="two-column-layout">
+                <!-- Left Column -->
+                <div class="column-left">
+                    <div class="column-content">
+                        <div class="story-block">
+                            <p style="margin-bottom: 25px;">
+                                Welcome to Aaron Agronomy Services, where innovation meets excellence in agricultural solutions. With a rich history and a commitment to sustainable farming practices, we have emerged as a trusted partner for farmers seeking top-notch agronomic services.
+                            </p>
+                            
+                            <div class="image-container">
+                                <img src="about1.webp" alt="Aaron Agronomy Services Introduction" style="width: 100%; border-radius: 8px; margin-bottom: 25px;">
+                            </div>
+                        </div>
+                        
+                        <div class="story-block">
+                            <p style="margin-bottom: 25px;">
+                                Today, we are proud to be a trusted partner for farmers seeking to improve their yields, adopt sustainable practices, and build profitable agricultural enterprises.
+                            </p>
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="column-right">
+                    <div class="column-content">
+                        <div class="story-block">
+                            <h2 style="color: var(--primary-green); margin-bottom: 20px; font-size: 1.8rem;">OUR HISTORY</h2>
+                            
+                            <p style="margin-bottom: 25px;">
+                                Founded in the year 2015, Aaron Agronomy Services has deep roots in the agricultural sector in Makueni county. Aaron Ndisya, the visionary behind the company, started with a passion for transforming traditional farming methods into efficient, modern practices.
+                            </p>
+                            
+                            <div class="image-container">
+                                <img src="about2.webp" alt="Aaron Agronomy Services History" style="width: 100%; border-radius: 8px; margin-bottom: 25px;">
+                            </div>
+                            
+                            <p style="margin-bottom: 25px;">
+                                Over the years, our company has grown steadily, evolving with advancements in agronomic science and technology. Today, we stand as a beacon of progress, managing a pixie farm with over 1300 trees and offering a comprehensive suite of services to farmers across diverse landscapes.
+                            </p>
+                        </div>
+                        
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Mission & Vision -->
+    <section style="background-color: var(--light-green); padding: 60px 0;">
+        <div class="container">
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>
+                        At Aaron Agronomy Services, our mission is to empower farmers with cutting-edge agronomic solutions that enhance productivity, sustainability, and profitability. We strive to be at the forefront of agricultural innovation, providing our clients with the knowledge and tools they need to thrive in a rapidly changing world. 
+                    </p>
+                </div>
+                
+                <div class="vision-card">
+                    <div class="vision-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>
+                        Our vision is to be a global leader in agronomy services, contributing significantly to the development of a sustainable and resilient agricultural ecosystem. We envision a future where farmers leverage the latest technologies and practices to achieve bountiful harvests while preserving the environment for generations to come. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Timeline -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Journey</h2>
+                <p>Key milestones in our growth and development</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Foundation</h4>
+                        <p>Started as a small farm consultation service in Kalamba, Nzaui, focusing on avocado and mango farms.</p>
+                    </div>
+                    <div class="timeline-year">2015</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Expansion</h4>
+                        <p>Introduced quality seedling production and expanded services to include pixie oranges and other fruits.</p>
+                    </div>
+                    <div class="timeline-year">2017</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Team Growth</h4>
+                        <p> Established formal training programs for farmers.</p>
+                    </div>
+                    <div class="timeline-year">2020</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Service Diversification</h4>
+                        <p>Launched comprehensive farm assessment services and irrigation installation division.</p>
+                    </div>
+                    <div class="timeline-year">2022</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Digital Transformation</h4>
+                        <p>Introduced online farmer registration, digital record keeping, and mobile consultation services.</p>
+                    </div>
+                    <div class="timeline-year">2024</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Regional Presence</h4>
+                        <p>Expanded services to neighboring counties and established partnerships with agricultural institutions.</p>
+                    </div>
+                    <div class="timeline-year">2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Team</h2>
+                <p>Dedicated professionals committed to your farming success</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="ceo.png" alt="Aaron Ndisya">
+    
+                    </div>
+                    <div class="team-info">
+                        <h4>AARON NDISYA</h4>
+                        <div class="team-role">Founder & Lead Agronomist</div>
+                        <p>Many years of experience in horticulture and farm management.</p>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="dbb.png" alt="DEBORAH MUTHINI">
+                    </div>
+                    <div class="team-info">
+                        <h4>DEBORAH MUTHINI</h4>
+                        <div class="team-role">Senior Agronomist</div>
+                        <p>Specializes in soil science and sustainable farming practices.</p>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="FN.png" alt="FELIX NTABO">
+                    </div>
+                    <div class="team-info">
+                        <h4>FELIX NTABO</h4>
+                        <div class="team-role">REPORTS INCHARGE</div>
+                        <p>Expert in report writting and analysis of the farm.</p>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-img">
+                        <img src="NO.png" alt="Grace">
+                    </div>
+                    <div class="team-info">
+                        <h4>Grace </h4>
+                        <div class="team-role">Training Coordinator</div>
+                        <p>Develops and delivers farmer training programs and workshops.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Core Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>We maintain the highest ethical standards in all our interactions and recommendations.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>We continuously seek and implement innovative solutions to farming challenges.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaboration</h3>
+                    <p>We work closely with farmers, partners, and communities to achieve shared goals.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We promote farming practices that protect the environment for future generations.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>We strive for excellence in every service we provide and every interaction we have.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Commitment</h3>
+                    <p>We are deeply committed to the success and wellbeing of the farming community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Impact</h2>
+                <p>Making a difference in the agricultural sector</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Farmers Served</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">1,200+</div>
+                    <div class="stat-label">Farm Assessments</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">50,000+</div>
+                    <div class="stat-label">Seedlings Supplied</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Training Programs</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Years of Service</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Counties Covered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="background-color: var(--primary-green); color: white; text-align: center; padding: 60px 0;">
+        <div class="container">
+            <h2 style="margin-bottom: 20px;">Join Our Growing Community</h2>
+            <p style="margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Become part of our success story. Whether you're a farmer seeking expert guidance or 
+                a professional looking to collaborate, we'd love to work with you.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="contact.html" class="btn" style="background-color: white; color: var(--primary-green);">Contact Us</a>
+                <a href="farmer-signup.html" class="btn btn-outline" style="border-color: white; color: white;">Register as Farmer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Aaron Agronomy Services</h3>
+                    <p>Transforming agriculture through innovation, expertise, and dedication since 2020.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="farm-assessment.html">Farm Assessment</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Kalamba, Nzaui, Makueni</li>
+                        <li><i class="fas fa-phone"></i> +257 25993004</li>
+                        <li><i class="fas fa-envelope"></i> aaronagronomyservices@gmail.com</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Aaron Agronomy Services. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

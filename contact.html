@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Aaron Agronomy Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .contact-hero {
+            background: linear-gradient(rgba(26, 71, 42, 0.9), rgba(26, 71, 42, 0.95)),url(pixie2.webp);
+            color: white;
+            padding: 100px 0 80px;
+            margin-top: -80px;
+            padding-top: 180px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .contact-info-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-green);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            color: var(--accent-green);
+            font-size: 1.2rem;
+        }
+        
+        .contact-details h4 {
+            margin: 0 0 5px 0;
+            color: var(--dark-text);
+        }
+        
+        .contact-details p {
+            margin: 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .business-hours {
+            background-color: var(--light-green);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .business-hours h4 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+        
+        .hour-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .hour-item:last-child {
+            border-bottom: none;
+        }
+        
+        .map-container {
+            height: 400px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 40px 0;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #e9f5eb;
+            color: var(--primary-green);
+        }
+        
+        .map-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-form-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-header {
+            margin-bottom: 30px;
+        }
+        
+        .form-header h3 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+        
+        .required-note {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-green);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .contact-option-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .contact-option-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-option-icon {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .contact-form-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-img">
+                    <img src="aaron logo.webp" alt="Aaron Agronomy Services Logo">
+                    <div class="img-fallback" style="display: none;">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                </div>
+                <div class="logo-text">Aaron <span>Agronomy</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="farm-assessment.html">Farm Assessment</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="LOGINS.html" class="btn btn-small">Log in</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+    </header>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Contact Us</h1>
+                <p>Get in touch with our team for inquiries, orders, or farm assessment requests</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-info-card">
+                        <h3>Contact Information</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Address</h4>
+                                <p>
+                                    Aaron Agronomy Services<br>
+                                    Kalamba, Nzaui<br>
+                                    Makueni County, Kenya
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <p>+257 25993004</p>
+                                <p style="font-size: 0.9rem; color: #888; margin-top: 5px;">Monday - Friday, 8:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>aaronagronomyservices@gmail.com</p>
+                                <p style="font-size: 0.9rem; color: #888; margin-top: 5px;">We respond within 24 hours</p>
+                            </div>
+                        </div>
+                        
+                        <div class="business-hours">
+                            <h4>Business Hours</h4>
+                            <div class="hour-item">
+                                <span>Monday - Friday</span>
+                                <span>8:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="hour-item">
+                                <span>Saturday</span>
+                                <span>9:00 AM - 1:00 PM</span>
+                            </div>
+                            <div class="hour-item">
+                                <span>Sunday</span>
+                                <span>Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <h3>Social Media</h3>
+                        <p style="margin-bottom: 20px; color: #666;">
+                            Follow us on social media for updates, farming tips, and promotions.
+                        </p>
+                        <div style="display: flex; gap: 15px;">
+                            <a href="#" style="width: 45px; height: 45px; background-color: var(--light-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-green); font-size: 1.2rem;">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" style="width: 45px; height: 45px; background-color: var(--light-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-green); font-size: 1.2rem;">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" style="width: 45px; height: 45px; background-color: var(--light-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-green); font-size: 1.2rem;">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" style="width: 45px; height: 45px; background-color: var(--light-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-green); font-size: 1.2rem;">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <div class="form-header">
+                        <h3>Send Us a Message</h3>
+                        <p>Fill out the form below and we'll get back to you as soon as possible</p>
+                        <p class="required-note">* Required fields</p>
+                    </div>
+                    
+                    <div id="successMessage" class="success-message">
+                        <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                        <h4>Message Sent Successfully!</h4>
+                        <p>Thank you for contacting us. We'll get back to you within 24 hours.</p>
+                    </div>
+                    
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">Full Name <span style="color: #dc3545;">*</span></label>
+                                <input type="text" id="contactName" name="contactName" required>
+                                <div class="error-message" id="nameError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactPhone">Phone Number <span style="color: #dc3545;">*</span></label>
+                                <input type="tel" id="contactPhone" name="contactPhone" required>
+                                <div class="error-message" id="phoneError"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address</label>
+                            <input type="email" id="contactEmail" name="contactEmail">
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactSubject">Subject <span style="color: #dc3545;">*</span></label>
+                            <select id="contactSubject" name="contactSubject" required>
+                                <option value="">Select a subject</option>
+                                <option value="product-inquiry">Product Inquiry</option>
+                                <option value="farm-assessment">Farm Assessment Request</option>
+                                <option value="service-request">Service Request</option>
+                                <option value="training-program">Training Program Inquiry</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="feedback">Feedback/Suggestions</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="error-message" id="subjectError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage">Message <span style="color: #dc3545;">*</span></label>
+                            <textarea id="contactMessage" name="contactMessage" required></textarea>
+                            <div class="error-message" id="messageError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem;">
+                                <input type="checkbox" id="contactTerms" name="contactTerms" required style="margin-top: 3px;">
+                                <span>
+                                    I agree to the <a href="#" style="color: var(--accent-green);">Terms of Service</a> and 
+                                    <a href="#" style="color: var(--accent-green);">Privacy Policy</a>.
+                                </span>
+                            </label>
+                            <div class="error-message" id="termsError"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section style="padding: 0 0 60px;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Location</h2>
+                <p>Find us in Kalamba, Nzaui, Makueni County</p>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Our Location</h3>
+                    <p style="margin-top: 10px; text-align: center; max-width: 500px;">
+                        We are located in Kalamba, Nzaui Sub-county, Makueni County. 
+                        Easily accessible from Wote town via the Kibwezi-Wote road.
+                    </p>
+                    <p style="margin-top: 20px;">
+                        <strong>GPS Coordinates:</strong> -1.7833° S, 37.4667° E
+                    </p>
+                    <a href="https://maps.google.com/?q=Kalamba+Nzaui+Makueni" target="_blank" class="btn" style="margin-top: 20px;">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Options -->
+    <section style="background-color: var(--light-green); padding: 60px 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Can We Help You?</h2>
+                <p>Choose the most convenient way to get in touch with us</p>
+            </div>
+            
+            <div class="contact-options">
+                <div class="contact-option-card">
+                    <div class="contact-option-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>Speak directly with our agronomy team for immediate assistance</p>
+                    <div style="margin-top: 15px;">
+                        <a href="tel:+25725993004" class="btn btn-small">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-option-card">
+                    <div class="contact-option-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Send us a WhatsApp message for quick queries and support</p>
+                    <div style="margin-top: 15px;">
+                        <a href="https://wa.me/25725993004" target="_blank" class="btn btn-small">
+                            <i class="fab fa-whatsapp"></i> Message on WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-option-card">
+                    <div class="contact-option-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>Send detailed inquiries or documents via email</p>
+                    <div style="margin-top: 15px;">
+                        <a href="mailto:aaronagronomyservices@gmail.com" class="btn btn-small">
+                            <i class="fas fa-envelope"></i> Send Email
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-option-card">
+                    <div class="contact-option-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Schedule Visit</h3>
+                    <p>Book an appointment for a farm visit or consultation</p>
+                    <div style="margin-top: 15px;">
+                        <a href="farm-assessment.html" class="btn btn-small">
+                            <i class="fas fa-calendar"></i> Book Appointment
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common questions</p>
+            </div>
+            
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+                    <h4 style="color: var(--primary-green); margin-bottom: 10px;">
+                        <i class="fas fa-question-circle" style="color: var(--accent-green); margin-right: 10px;"></i>
+                        What areas do you serve?
+                    </h4>
+                    <p style="color: #666;">
+                        We primarily serve Makueni County and also any other county nationwide or outside country. 
+                        We also provide services to neighboring counties by appointment.
+                    </p>
+                </div>
+                
+                <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+                    <h4 style="color: var(--primary-green); margin-bottom: 10px;">
+                        <i class="fas fa-question-circle" style="color: var(--accent-green); margin-right: 10px;"></i>
+                        How quickly do you respond to inquiries?
+                    </h4>
+                    <p style="color: #666;">
+                        We respond to phone calls and WhatsApp messages immediately during business hours. 
+                        Email inquiries are responded to within 24 hours.
+                    </p>
+                </div>
+                
+                <div class="faq-item" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+                    <h4 style="color: var(--primary-green); margin-bottom: 10px;">
+                        <i class="fas fa-question-circle" style="color: var(--accent-green); margin-right: 10px;"></i>
+                        Do you offer emergency farm consultation?
+                    </h4>
+                    <p style="color: #666;">
+                        Yes, we offer emergency consultation services for urgent farm issues like pest outbreaks, 
+                        disease outbreaks, or irrigation system failures. Call our emergency line for immediate assistance.
+                    </p>
+                </div>
+                
+                <div class="faq-item" style="margin-bottom: 20px;">
+                    <h4 style="color: var(--primary-green); margin-bottom: 10px;">
+                        <i class="fas fa-question-circle" style="color: var(--accent-green); margin-right: 10px;"></i>
+                        Can I visit your office without an appointment?
+                    </h4>
+                    <p style="color: #666;">
+                        While walk-ins are welcome, we recommend scheduling an appointment to ensure that the 
+                        appropriate agronomist is available to assist you with your specific needs.
+                    </p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <p style="color: #666; margin-bottom: 20px;">
+                        Didn't find your answer? <a href="#contactForm" style="color: var(--accent-green); font-weight: 600;">Ask your question here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="background-color: var(--primary-green); color: white; text-align: center; padding: 60px 0;">
+        <div class="container">
+            <h2 style="margin-bottom: 20px;">Ready to Transform Your Farm?</h2>
+            <p style="margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Contact us today to schedule a consultation or farm assessment. Let's work together to 
+                maximize your agricultural productivity and profitability.
+            </p>
+            <a href="tel:+25725993004" class="btn" style="background-color: white; color: var(--primary-green); margin-right: 15px;">
+                <i class="fas fa-phone"></i> Call Now
+            </a>
+            <a href="#contactForm" class="btn btn-outline" style="border-color: white; color: white;">
+                <i class="fas fa-envelope"></i> Send Message
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Aaron Agronomy Services</h3>
+                    <p>Professional agronomy services for successful farming in Makueni County.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="farm-assessment.html">Farm Assessment</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Emergency Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +257 25993004</li>
+                        <li><i class="fab fa-whatsapp"></i> +254 712 345678</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Emergency Line</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Aaron Agronomy Services. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Contact Form Validation and Submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Initialize form submission
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Clear previous error messages
+                clearErrorMessages();
+                
+                // Validate form
+                if (validateForm()) {
+                    // Collect form data
+                    const formData = {
+                        name: document.getElementById('contactName').value.trim(),
+                        phone: document.getElementById('contactPhone').value.trim(),
+                        email: document.getElementById('contactEmail').value.trim(),
+                        subject: document.getElementById('contactSubject').value,
+                        message: document.getElementById('contactMessage').value.trim(),
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    // Save to localStorage (in real app, send to server)
+                    saveContactMessage(formData);
+                    
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Hide success message after 10 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 10000);
+                }
+            });
+            
+            function validateForm() {
+                let isValid = true;
+                
+                // Validate name
+                const name = document.getElementById('contactName').value.trim();
+                if (!name) {
+                    showError('nameError', 'Full name is required');
+                    isValid = false;
+                } else if (name.length < 2) {
+                    showError('nameError', 'Name must be at least 2 characters');
+                    isValid = false;
+                }
+                
+                // Validate phone
+                const phone = document.getElementById('contactPhone').value.trim();
+                if (!phone) {
+                    showError('phoneError', 'Phone number is required');
+                    isValid = false;
+                } else if (!isValidPhone(phone)) {
+                    showError('phoneError', 'Please enter a valid phone number');
+                    isValid = false;
+                }
+                
+                // Validate email (optional but must be valid if provided)
+                const email = document.getElementById('contactEmail').value.trim();
+                if (email && !isValidEmail(email)) {
+                    showError('emailError', 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                // Validate subject
+                const subject = document.getElementById('contactSubject').value;
+                if (!subject) {
+                    showError('subjectError', 'Please select a subject');
+                    isValid = false;
+                }
+                
+                // Validate message
+                const message = document.getElementById('contactMessage').value.trim();
+                if (!message) {
+                    showError('messageError', 'Message is required');
+                    isValid = false;
+                } else if (message.length < 10) {
+                    showError('messageError', 'Message must be at least 10 characters');
+                    isValid = false;
+                }
+                
+                // Validate terms
+                const terms = document.getElementById('contactTerms').checked;
+                if (!terms) {
+                    showError('termsError', 'You must accept the terms and conditions');
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            function isValidPhone(phone) {
+                // Simple phone validation for Kenya numbers
+                const phoneRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+                return phoneRegex.test(phone) && phone.length >= 9;
+            }
+            
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            function showError(elementId, message) {
+                const errorElement = document.getElementById(elementId);
+                if (errorElement) {
+                    errorElement.textContent = message;
+                }
+            }
+            
+            function clearErrorMessages() {
+                const errorElements = document.querySelectorAll('.error-message');
+                errorElements.forEach(element => {
+                    element.textContent = '';
+                });
+            }
+            
+            function saveContactMessage(formData) {
+                // Get existing messages
+                const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+                
+                // Add new message
+                messages.push({
+                    id: Date.now(),
+                    ...formData,
+                    status: 'unread'
+                });
+                
+                // Save to localStorage
+                localStorage.setItem('contactMessages', JSON.stringify(messages));
+                
+                console.log('Contact message saved:', formData);
+            }
+            
+            // Smooth scroll to form
+            document.querySelectorAll('a[href="#contactForm"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('contactForm').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
