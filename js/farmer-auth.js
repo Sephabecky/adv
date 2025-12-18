@@ -1,3 +1,7 @@
+const API_BASE_URL=
+    "https://agronomy-backend-ehk1.onrender.com";
+
+
 // Farmer Authentication System
 class FarmerAuth {
     constructor() {
@@ -470,4 +474,5 @@ const farmerAuth = new FarmerAuth();
 // Export for use in other files
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = FarmerAuth;
+
 }
