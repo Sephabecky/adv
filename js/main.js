@@ -1,3 +1,7 @@
+const API_BASE_URL=
+    "https://agronomy-backend-ehk1.onrender.com";
+
+
 // Mobile Menu Toggle
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.getElementById('navMenu');
@@ -205,4 +209,5 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Logo loaded successfully');
         };
     }
+
 });
