@@ -1,3 +1,6 @@
+const API_BASE_URL=
+    "https://agronomy-backend-ehk1.onrender.com";
+
 // Agronomist Dashboard System
 class AgronomistDashboard {
     constructor() {
@@ -1018,3 +1021,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make dashboard available globally for button clicks
     window.agronomistDashboard = dashboard;
 });
+
