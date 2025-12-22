@@ -648,28 +648,28 @@
     <script src="js/main.js"></script>
     <script>
         // Contact Form Validation and Submission
-        document.addEventListener('DOMContentLoaded', function() {
-            const contactForm = document.getElementById('contactForm');
-            const successMessage = document.getElementById('successMessage');
-            
-            // Initialize form submission
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Clear previous error messages
-                clearErrorMessages();
-                
-                // Validate form
-                if (validateForm()) {
-                    // Collect form data
-                    const formData = {
-                        name: document.getElementById('contactName').value.trim(),
-                        phone: document.getElementById('contactPhone').value.trim(),
-                        email: document.getElementById('contactEmail').value.trim(),
-                        subject: document.getElementById('contactSubject').value,
-                        message: document.getElementById('contactMessage').value.trim(),
-                        timestamp: new Date().toISOString()
-                    };
+        <script>
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const data = {
+    name: name.value,
+    phone: phone.value,
+    email: email.value,
+    subject: subject.value,
+    message: message.value,
+    terms: true
+  };
+
+  await fetch("https://agronomy-backend-ehk1.onrender.com", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  alert("Message sent!");
+});
+
                     
                     // Save to localStorage (in real app, send to server)
                     saveContactMessage(formData);
@@ -802,4 +802,5 @@
         });
     </script>
 </body>
+
 </html>
