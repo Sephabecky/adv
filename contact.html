@@ -649,25 +649,27 @@
     <script>
         // Contact Form Validation and Submission
         <script>
-document.getElementById("contactForm").addEventListener("submit", async (e) => {
+document.getElementById("contactForm").addEventListener("submit", async function (e){
   e.preventDefault();
 
-  const data = {
-    name: name.value,
-    phone: phone.value,
-    email: email.value,
+  const form data = {
+   Fullname: name.value,
+    phoneNumber: phone.value,
+    emailaddress: email.value,
     subject: subject.value,
     message: message.value,
     terms: true
   };
-
-  await fetch("https://agronomy-backend-ehk1.onrender.com", {
+const response= await 
+    fetch("https://agronomy-backend-ehk1.onrender.com", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: JSON.stringify(formdata)
   });
 
-  alert("Message sent!");
+  const result=await response.jsom();
+    alert(result.message);
+});
 
                     
                     // Save to localStorage (in real app, send to server)
@@ -803,4 +805,5 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
 </body>
 
 </html>
+
 
