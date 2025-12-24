@@ -1,5 +1,4 @@
-const API_BASE_URL=
-    "https://agronomy-backend-ehk1.onrender.com";
+
 document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.getElementById("contactForm");
   const successMessage = document.getElementById("successMessage");
