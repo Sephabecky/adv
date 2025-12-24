@@ -1,60 +1,36 @@
 
-document.addEventListener("DOMContentLoaded", () => {
-  const contactForm = document.getElementById("contactForm");
-  const successMessage = document.getElementById("successMessage");
+const form = document.getElementById("contactForm");
 
-  contactForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    clearErrorMessages();
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    if (!validateForm()) return;
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
 
-    const submitBtn = contactForm.querySelector("button[type='submit']");
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
+  try {
+    const response = await fetch(
+      "https://agronomy-backend-ehk1.onrender.com/api/contact",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, email, message })
+      }
+    );
 
-    const formData = {
-      name: document.getElementById("contactName").value.trim(),
-      phone: document.getElementById("contactPhone").value.trim(),
-      email: document.getElementById("contactEmail").value.trim(),
-      subject: document.getElementById("contactSubject").value,
-      message: document.getElementById("contactMessage").value.trim()
-    };
+    const data = await response.json();
 
-    try {
-      const response = await fetch(
-        "https://agronomy-backend-ehk1.onrender.com/contact",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData)
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) throw new Error(data.error);
-
-      successMessage.style.display = "block";
-      contactForm.reset();
-
-    } catch (err) {
-      showError("formError", err.message || "Failed to send message");
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Send Message";
+    if (response.ok) {
+      alert("Message sent successfully!");
+      form.reset();
+    } else {
+      alert("Failed to send message");
+      console.error(data);
     }
-  });
-
-  function validateForm() {
-    return true; // keep your existing validation here
-  }
-
-  function showError(id, msg) {
-    document.getElementById(id).textContent = msg;
-  }
-
-  function clearErrorMessages() {
-    document.querySelectorAll(".error-message").forEach(e => e.textContent = "");
+  } catch (error) {
+    console.error("NETWORK ERROR:", error);
+    alert("Server not reachable");
   }
 });
