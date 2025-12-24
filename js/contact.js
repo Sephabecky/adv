@@ -1,4 +1,12 @@
-console.log("contact.js loaded");
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("contact.js loaded");
+
+  const form = document.getElementById("contactForm");
+  console.log("FORM FOUND:", form);
+
+  if (!form) return;
+  
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
 
