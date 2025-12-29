@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const payload = {
       fullName: nameInput.value,
       phoneNumber: phoneInput.value,
-      email: emailInput.value,
+      emailaddress: emailInput.value,
       subject: subjectInput.value,
       message: messageInput.value
     };
