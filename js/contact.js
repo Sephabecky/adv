@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   console.log("contact.js loaded");
 
@@ -18,30 +17,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const subjectInput = document.getElementById("contactSubject");
     const messageInput = document.getElementById("contactMessage");
 
-    if (!nameInput || !phoneInput || !subjectInput || !messageInput) {
+    if (!nameInput || !phoneInput || !emailInput || !subjectInput || !messageInput) {
       console.error("One or more inputs missing");
       return;
     }
 
+    // Build the payload correctly
     const payload = {
-      fullName: nameInput.value.trim(),
-      phone: phoneInput.value.trim(),
-      email: emailInput?.value.trim() || "Not provided",
-      subject: subjectInput.value.trim(),
-      message: messageInput.value.trim()
+      fullName: nameInput.value,
+      phoneNumber: phoneInput.value,
+      email: emailInput.value,
+      subject: subjectInput.value,
+      message: messageInput.value
     };
 
     console.log("SENDING:", payload);
 
     try {
-      const response = await fetch(
-        "https://agronomy-backend-ehk1.onrender.com/api/contact",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        }
-      );
+      // Await the fetch response
+      const response = await fetch("https://agronomy-backend-ehk…r.com/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
 
       const data = await response.json();
 
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         form.reset();
       } else {
         alert("Failed to send message");
-        console.error(data);
+        console.error("Server responded with:", data);
       }
     } catch (error) {
       console.error("NETWORK ERROR:", error);
