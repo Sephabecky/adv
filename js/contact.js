@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const payload = {
-      name: nameInput.value.trim(),
+      fullName: nameInput.value.trim(),
       phone: phoneInput.value.trim(),
       email: emailInput?.value.trim() || "Not provided",
       subject: subjectInput.value.trim(),
