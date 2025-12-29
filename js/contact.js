@@ -9,56 +9,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log("FORM SUBMITTED");
 
-    const nameInput = document.getElementById("contactName");
-    const phoneInput = document.getElementById("contactPhone");
-    const emailInput = document.getElementById("contactEmail");
-    const subjectInput = document.getElementById("contactSubject");
-    const messageInput = document.getElementById("contactMessage");
-
-    if (!nameInput || !phoneInput || !emailInput || !subjectInput || !messageInput) {
-      console.error("One or more inputs missing");
-      return;
-    }
-
-    // Build the payload correctly
     const payload = {
-      fullName: nameInput.value,
-      phoneNumber: phoneInput.value,
-      emailaddress: emailInput.value,
-      subject: subjectInput.value,
-      message: messageInput.value
+      fullname: document.getElementById("contactName").value.trim(),
+      phonenumber: document.getElementById("contactPhone").value.trim(),
+      emailaddress: document.getElementById("contactEmail")?.value.trim() || "Not provided",
+      subject: document.getElementById("contactSubject").value.trim(),
+      message: document.getElementById("contactMessage").value.trim()
     };
 
-    console.log("SENDING:", payload);
+    console.log("Sending payload:", payload);
+
+    const API_URL = "https://agronomy-backend-ehk1.onrender.com/api/contact";
 
     try {
-      const response = await fetch(
-        "https://agronomy-backend-ehk…r.com/api/contact", 
-        {
+      const response = await fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
-      }
-      );
+      });
 
-
-      if (response.ok) {
-        const text=await response.text();
-        console.error("SERVER ERROR:",text();
-        alert("Backend error.check console.");
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Backend error:", errorText);
+        alert("Failed to send message");
         return;
       }
 
-      comst data=await response.json();
-      alert("message sent successfully!");
+      const data = await response.json();
+      console.log("Success:", data);
+
+      alert("Message sent successfully!");
       form.reset();
 
-    }catch(error){
-      console.error("Network error:",error);
-      alert("server not reachable");
+    } catch (error) {
+      console.error("Network error:", error);
+      alert("Server not reachable");
     }
-        
+  });
+});
