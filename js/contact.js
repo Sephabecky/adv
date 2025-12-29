@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!response.ok) {
         const errorText = await response.text();
         console,error("Backend error:",data);
-        alert(data.message ("Failed to send message"));
+        alert(data.message ("Failed to send message")
+              );
         return;
       }
 
