@@ -47,7 +47,12 @@
             color: var(--accent-green);
             font-weight: bold;
         }
-        
+        .responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
         .pricing-table {
             width: 100%;
             border-collapse: collapse;
@@ -142,7 +147,9 @@
                     <li>Written report with actionable recommendations</li>
                 </ul>
             </div>
-            <img src="us.webp">
+            <img src="us.webp" alt="Image" class="responsive-img">
+
+    
             <table class="pricing-table">
                 <thead>
                     <tr>
@@ -421,3 +428,4 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
