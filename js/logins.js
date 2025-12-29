@@ -1,3 +1,19 @@
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("loginForm");
+
+  console.log("Form found:", form);
+
+  if (!form) {
+    console.error("loginForm NOT found in HTML");
+    return;
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    console.log("Login form submitted");
+  });
+});
 const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", async (e) => {
