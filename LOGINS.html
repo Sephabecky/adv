@@ -478,6 +478,65 @@
             to { transform: rotate(360deg); }
         }
 
+        /* PDF Upload/Download Styles */
+        .pdf-upload-container {
+            border: 2px dashed var(--primary-light);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin: 15px 0;
+            background-color: rgba(76, 175, 80, 0.05);
+        }
+
+        .pdf-preview {
+            margin-top: 15px;
+            padding: 10px;
+            background: var(--light-gray);
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pdf-icon {
+            color: var(--danger);
+            font-size: 1.5rem;
+        }
+
+        .upload-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .upload-btn input[type="file"] {
+            display: none;
+        }
+
+        .pdf-list {
+            margin-top: 20px;
+        }
+
+        .pdf-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: var(--light-gray);
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .pdf-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-container {
@@ -533,16 +592,16 @@
     <!-- Header -->
     <header class="main-header">
         <div class="container header-container">
-            <header>
-        <div class="container header-container">
             <a href="index.html" class="logo">
                 <div class="logo-img">
                     <img src="aaron logo.webp" alt="Aaron Agronomy Services Logo" onerror="this.style.display='none'">
-        
-                </div>  
+                </div>
+                <div class="logo-text">
+                    <h1>Aaron Agronomy System</h1>
+                    <p>Smart Farming Solutions</p>
+                </div>
             </a>
-        </header>
-  
+            
             <nav class="nav-links">
                 <a href="#" id="navDashboard" class="active"><i class="fas fa-home"></i> Dashboard</a>
                 <a href="#" id="navReports"><i class="fas fa-file-alt"></i> Reports</a>
@@ -911,6 +970,61 @@
         </div>
     </div>
 
+    <!-- Upload PDF Modal (Agronomist) -->
+    <div class="modal" id="uploadPdfModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Upload PDF for Farmer</h3>
+                <button class="close-modal" data-modal="uploadPdfModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="uploadPdfForm">
+                    <div class="form-group">
+                        <label for="pdfFarmer">Select Farmer</label>
+                        <select id="pdfFarmer" class="form-control" required>
+                            <option value="">Select Farmer</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pdfTitle">PDF Title</label>
+                        <input type="text" id="pdfTitle" class="form-control" placeholder="e.g., Soil Analysis Report, Farming Guide" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pdfDescription">Description</label>
+                        <textarea id="pdfDescription" class="form-control" rows="3" placeholder="Brief description of the PDF content"></textarea>
+                    </div>
+                    
+                    <div class="pdf-upload-container">
+                        <i class="fas fa-file-pdf pdf-icon"></i>
+                        <p>Upload PDF file (Max: 10MB)</p>
+                        <label class="upload-btn">
+                            <input type="file" id="pdfFile" accept=".pdf" required>
+                            <i class="fas fa-upload"></i> Choose PDF File
+                        </label>
+                        <div id="pdfFileName" style="margin-top: 10px; color: var(--gray);"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pdfCategory">Category</label>
+                        <select id="pdfCategory" class="form-control">
+                            <option value="reports">Reports</option>
+                            <option value="guides">Farming Guides</option>
+                            <option value="certificates">Certificates</option>
+                            <option value="market_info">Market Information</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success" style="width: 100%;">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload PDF
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- View Report Modal -->
     <div class="modal" id="viewReportModal">
         <div class="modal-content">
@@ -920,6 +1034,21 @@
             </div>
             <div class="modal-body" id="reportContent">
                 <!-- Report content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- View PDF Modal -->
+    <div class="modal" id="viewPdfModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3>PDF Document</h3>
+                <button class="close-modal" data-modal="viewPdfModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="pdfViewerContent">
+                    <!-- PDF info will be loaded here -->
+                </div>
             </div>
         </div>
     </div>
@@ -1031,6 +1160,13 @@
                     if (e.target.id === 'toggleFarmersViewBtn' || e.target.closest('#toggleFarmersViewBtn')) {
                         this.toggleFarmersView();
                     }
+                    if (e.target.id === 'uploadPdfBtn' || e.target.closest('#uploadPdfBtn')) {
+                        this.loadFarmersForPdfUpload();
+                        this.showModal('uploadPdfModal');
+                    }
+                    if (e.target.id === 'viewMyPdfsBtn' || e.target.closest('#viewMyPdfsBtn')) {
+                        this.loadMyPdfs();
+                    }
                 });
 
                 // Form submissions
@@ -1038,6 +1174,19 @@
                 document.getElementById('addFarmForm').addEventListener('submit', (e) => this.handleAddFarm(e));
                 document.getElementById('createReportForm').addEventListener('submit', (e) => this.handleCreateReport(e));
                 document.getElementById('createInvoiceForm').addEventListener('submit', (e) => this.handleCreateInvoice(e));
+                document.getElementById('uploadPdfForm').addEventListener('submit', (e) => this.handleUploadPdf(e));
+
+                // File input change event
+                document.getElementById('pdfFile').addEventListener('change', function(e) {
+                    const fileName = document.getElementById('pdfFileName');
+                    if (this.files.length > 0) {
+                        fileName.textContent = 'Selected: ' + this.files[0].name;
+                        fileName.style.color = 'var(--success)';
+                    } else {
+                        fileName.textContent = 'No file selected';
+                        fileName.style.color = 'var(--gray)';
+                    }
+                });
             }
 
             handleLoginTab(e) {
@@ -1162,6 +1311,7 @@
                     localStorage.setItem('sales', JSON.stringify([]));
                     localStorage.setItem('reports', JSON.stringify([]));
                     localStorage.setItem('invoices', JSON.stringify([]));
+                    localStorage.setItem('pdfs', JSON.stringify([]));
                     
                     this.showNotification('Account created successfully! Farmer ID: ' + farmerId, 'success');
                     document.getElementById('farmerSignupForm').style.display = 'none';
@@ -1200,6 +1350,8 @@
                     const sales = JSON.parse(localStorage.getItem('sales')) || [];
                     const farms = JSON.parse(localStorage.getItem('farms')) || [];
                     const reports = JSON.parse(localStorage.getItem('reports')) || [];
+                    const pdfs = JSON.parse(localStorage.getItem('pdfs')) || [];
+                    const farmerPdfs = pdfs.filter(p => p.farmerId === this.currentUser.id);
                     
                     const totalSales = sales.reduce((sum, sale) => sum + sale.total, 0);
                     const totalExpenses = sales.reduce((sum, sale) => sum + sale.expenses, 0);
@@ -1244,10 +1396,10 @@
                             
                             <div class="card">
                                 <div class="card-header">
-                                    <h3><i class="fas fa-file-alt"></i> Reports</h3>
+                                    <h3><i class="fas fa-file-pdf"></i> Documents</h3>
                                 </div>
-                                <h2 style="color: var(--warning); margin: 20px 0;">${reports.filter(r => r.farmerId === this.currentUser.id).length}</h2>
-                                <p>Agronomist reports</p>
+                                <h2 style="color: var(--warning); margin: 20px 0;">${farmerPdfs.length}</h2>
+                                <p>PDF documents</p>
                             </div>
                         </div>
                         
@@ -1278,9 +1430,19 @@
                             
                             <div class="card">
                                 <div class="card-header">
-                                    <h3><i class="fas fa-file-medical-alt"></i> Recent Reports</h3>
+                                    <h3><i class="fas fa-file-download"></i> My Documents</h3>
+                                    <div class="card-actions">
+                                        <button class="btn btn-sm btn-primary" id="viewMyPdfsBtn">
+                                            <i class="fas fa-folder-open"></i> View PDFs
+                                        </button>
+                                    </div>
                                 </div>
-                                ${this.renderRecentReports(reports.filter(r => r.farmerId === this.currentUser.id).slice(-3).reverse())}
+                                <p>Access farming guides, reports, and certificates uploaded by your agronomist.</p>
+                                <div style="margin-top: 10px;">
+                                    <span class="badge badge-info">
+                                        <i class="fas fa-file-pdf"></i> ${farmerPdfs.length} PDF Documents
+                                    </span>
+                                </div>
                             </div>
                             
                             <div class="card">
@@ -1301,6 +1463,7 @@
                     const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
                     const sales = JSON.parse(localStorage.getItem('sales')) || [];
                     const reports = JSON.parse(localStorage.getItem('reports')) || [];
+                    const pdfs = JSON.parse(localStorage.getItem('pdfs')) || [];
                     
                     const totalSales = sales.reduce((sum, sale) => sum + sale.total, 0);
                     const totalProfit = sales.reduce((sum, sale) => sum + (sale.total - sale.expenses), 0);
@@ -1338,10 +1501,10 @@
                             
                             <div class="card">
                                 <div class="card-header">
-                                    <h3><i class="fas fa-dollar-sign"></i> Total Sales</h3>
+                                    <h3><i class="fas fa-file-pdf"></i> PDFs Uploaded</h3>
                                 </div>
-                                <h2 style="color: var(--warning); margin: 20px 0;">$${totalSales.toFixed(2)}</h2>
-                                <p>All farmers sales</p>
+                                <h2 style="color: var(--warning); margin: 20px 0;">${pdfs.length}</h2>
+                                <p>Documents shared</p>
                             </div>
                         </div>
                         
@@ -1379,10 +1542,18 @@
                             
                             <div class="card">
                                 <div class="card-header">
-                                    <h3><i class="fas fa-chart-bar"></i> Sales Overview</h3>
+                                    <h3><i class="fas fa-file-upload"></i> Upload PDFs</h3>
+                                    <div class="card-actions">
+                                        <button class="btn btn-sm btn-success" id="uploadPdfBtn">
+                                            <i class="fas fa-upload"></i> Upload PDF
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="chart-container">
-                                    <canvas id="agroSalesChart"></canvas>
+                                <p>Upload farming guides, reports, certificates, and other PDF documents for farmers.</p>
+                                <div style="margin-top: 15px;">
+                                    <small style="color: var(--gray);">
+                                        <i class="fas fa-info-circle"></i> Farmers can download these from their dashboard
+                                    </small>
                                 </div>
                             </div>
                             
@@ -1891,6 +2062,19 @@
                 });
             }
 
+            loadFarmersForPdfUpload() {
+                const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
+                const select = document.getElementById('pdfFarmer');
+                select.innerHTML = '<option value="">Select Farmer</option>';
+                
+                farmers.forEach(farmer => {
+                    const option = document.createElement('option');
+                    option.value = farmer.id;
+                    option.textContent = `${farmer.firstName} ${farmer.lastName} (${farmer.email})`;
+                    select.appendChild(option);
+                });
+            }
+
             async handleCreateReport(e) {
                 e.preventDefault();
                 
@@ -1930,6 +2114,60 @@
                     this.loadDashboard();
                     this.showNotification('Report created successfully!', 'success');
                 }
+            }
+
+            async handleUploadPdf(e) {
+                e.preventDefault();
+                
+                const fileInput = document.getElementById('pdfFile');
+                if (!fileInput.files.length) {
+                    this.showNotification('Please select a PDF file', 'error');
+                    return;
+                }
+                
+                const file = fileInput.files[0];
+                if (file.type !== 'application/pdf') {
+                    this.showNotification('Only PDF files are allowed', 'error');
+                    return;
+                }
+                
+                if (file.size > 10 * 1024 * 1024) { // 10MB limit
+                    this.showNotification('File size must be less than 10MB', 'error');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const pdfData = event.target.result;
+                    
+                    const pdf = {
+                        id: 'PDF-' + Date.now(),
+                        farmerId: document.getElementById('pdfFarmer').value,
+                        title: document.getElementById('pdfTitle').value,
+                        description: document.getElementById('pdfDescription').value,
+                        category: document.getElementById('pdfCategory').value,
+                        fileName: file.name,
+                        fileSize: (file.size / 1024).toFixed(2) + ' KB',
+                        pdfData: pdfData.split(',')[1], // Remove data URL prefix
+                        uploadedBy: this.currentUser.id,
+                        uploadedAt: new Date().toISOString(),
+                        downloaded: false
+                    };
+                    
+                    // Save to localStorage
+                    const pdfs = JSON.parse(localStorage.getItem('pdfs')) || [];
+                    pdfs.push(pdf);
+                    localStorage.setItem('pdfs', JSON.stringify(pdfs));
+                    
+                    this.hideModal('uploadPdfModal');
+                    this.showNotification('PDF uploaded successfully!', 'success');
+                    
+                    // Reset form
+                    document.getElementById('uploadPdfForm').reset();
+                    document.getElementById('pdfFileName').textContent = '';
+                };
+                
+                reader.readAsDataURL(file);
             }
 
             loadFarmersForInvoice() {
@@ -2037,6 +2275,175 @@
                     this.hideModal('createInvoiceModal');
                     this.previewInvoice(invoice.id);
                     this.showNotification('Invoice created successfully!', 'success');
+                }
+            }
+
+            loadMyPdfs() {
+                if (this.userType !== 'farmer') return;
+                
+                const pdfs = JSON.parse(localStorage.getItem('pdfs')) || [];
+                const farmerPdfs = pdfs.filter(p => p.farmerId === this.currentUser.id);
+                
+                let html = `
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-file-pdf"></i> My PDF Documents</h3>
+                            <div class="card-actions">
+                                <button class="btn btn-primary" onclick="system.downloadAllPdfs()">
+                                    <i class="fas fa-download"></i> Download All
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="pdf-list">
+                `;
+                
+                if (farmerPdfs.length === 0) {
+                    html += `
+                        <div class="pdf-upload-container" style="background: white;">
+                            <i class="fas fa-file-pdf pdf-icon" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                            <h4>No PDFs Available</h4>
+                            <p>Your agronomist hasn't uploaded any PDFs for you yet.</p>
+                        </div>
+                    `;
+                } else {
+                    // Group by category
+                    const categories = {};
+                    farmerPdfs.forEach(pdf => {
+                        if (!categories[pdf.category]) {
+                            categories[pdf.category] = [];
+                        }
+                        categories[pdf.category].push(pdf);
+                    });
+                    
+                    Object.keys(categories).forEach(category => {
+                        html += `<h4 style="margin-top: 20px; margin-bottom: 10px; text-transform: capitalize;">${category.replace('_', ' ')}</h4>`;
+                        
+                        categories[category].forEach(pdf => {
+                            const uploadedDate = new Date(pdf.uploadedAt).toLocaleDateString();
+                            html += `
+                                <div class="pdf-item">
+                                    <div class="pdf-info">
+                                        <i class="fas fa-file-pdf pdf-icon"></i>
+                                        <div>
+                                            <strong>${pdf.title}</strong><br>
+                                            <small>${pdf.description || 'No description'}</small><br>
+                                            <small style="color: var(--gray);">${pdf.fileSize} • Uploaded: ${uploadedDate}</small>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-sm btn-info" onclick="system.previewPdf('${pdf.id}')">
+                                            <i class="fas fa-eye"></i> View
+                                        </button>
+                                        <button class="btn btn-sm btn-success" onclick="system.downloadPdf('${pdf.id}')">
+                                            <i class="fas fa-download"></i> Download
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    });
+                }
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('mainContent').innerHTML = html;
+                document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                this.showNotification('Loaded PDF documents', 'info');
+            }
+
+            previewPdf(pdfId) {
+                const pdfs = JSON.parse(localStorage.getItem('pdfs')) || [];
+                const pdf = pdfs.find(p => p.id === pdfId);
+                
+                if (!pdf) return;
+                
+                const html = `
+                    <div class="invoice">
+                        <div class="invoice-header">
+                            <div>
+                                <h2><i class="fas fa-file-pdf pdf-icon"></i> ${pdf.title}</h2>
+                                <p><strong>Description:</strong> ${pdf.description || 'No description'}</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <p><strong>Category:</strong> ${pdf.category.replace('_', ' ')}</p>
+                                <p><strong>Uploaded:</strong> ${new Date(pdf.uploadedAt).toLocaleDateString()}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pdf-upload-container" style="background: white; margin: 30px 0;">
+                            <i class="fas fa-file-pdf pdf-icon" style="font-size: 4rem; color: var(--danger);"></i>
+                            <h4>${pdf.fileName}</h4>
+                            <p>${pdf.fileSize}</p>
+                            <p style="color: var(--gray); margin-top: 10px;">
+                                <i class="fas fa-info-circle"></i> This PDF document is available for download
+                            </p>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 30px;">
+                            <button class="btn btn-primary" onclick="system.downloadPdf('${pdf.id}')">
+                                <i class="fas fa-download"></i> Download PDF
+                            </button>
+                            <button class="btn btn-secondary" onclick="system.printPdf('${pdf.id}')">
+                                <i class="fas fa-print"></i> Print Document
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('pdfViewerContent').innerHTML = html;
+                this.showModal('viewPdfModal');
+            }
+
+            downloadPdf(pdfId) {
+                const pdfs = JSON.parse(localStorage.getItem('pdfs')) || [];
+                const pdf = pdfs.find(p => p.id === pdfId);
+                
+                if (!pdf) return;
+                
+                // Mark as downloaded
+                pdf.downloaded = true;
+                pdf.downloadedAt = new Date().toISOString();
+                localStorage.setItem('pdfs', JSON.stringify(pdfs));
+                
+                // Create download link
+                const link = document.createElement('a');
+                link.href = 'data:application/pdf;base64,' + pdf.pdfData;
+                link.download = pdf.fileName || pdf.title + '.pdf';
+                link.click();
+                
+                this.showNotification('PDF downloaded successfully!', 'success');
+            }
+
+            printPdf(pdfId) {
+                this.downloadPdf(pdfId);
+                this.showNotification('PDF ready for printing', 'info');
+            }
+
+            downloadAllPdfs() {
+                const pdfs = JSON.parse(localStorage.getItem('pdfs')) || [];
+                const farmerPdfs = this.userType === 'farmer' 
+                    ? pdfs.filter(p => p.farmerId === this.currentUser.id)
+                    : pdfs;
+                
+                if (farmerPdfs.length === 0) {
+                    this.showNotification('No PDFs to download', 'warning');
+                    return;
+                }
+                
+                // Create a zip of all PDFs
+                this.showNotification('Preparing PDF bundle for download...', 'info');
+                
+                // For demo purposes, we'll download the first PDF
+                // In a real app, you would use a library like JSZip to bundle multiple files
+                if (farmerPdfs.length > 0) {
+                    setTimeout(() => {
+                        this.downloadPdf(farmerPdfs[0].id);
+                        this.showNotification('Downloading first PDF. Multiple file download requires backend support.', 'info');
+                    }, 1000);
                 }
             }
 
