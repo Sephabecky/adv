@@ -4,7 +4,7 @@ loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const response = await fetch(
-    "https://agronomy-backend-ehk1.onrender.com/api/login",
+    "https://agronomy-backend-ehk1.onrender.com/api/logins",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
