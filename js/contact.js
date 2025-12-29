@@ -34,27 +34,31 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("SENDING:", payload);
 
     try {
-      // Await the fetch response
-      const response = await fetch("https://agronomy-backend-ehk…r.com/api/contact", {
+      const response = await fetch(
+        "https://agronomy-backend-ehk…r.com/api/contact", 
+        {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
-      });
+      }
+      );
 
-      const data = await response.json();
 
       if (response.ok) {
-        alert("Message sent successfully!");
-        form.reset();
-      } else {
-        alert("Failed to send message");
-        console.error("Server responded with:", data);
+        const text=await response.text();
+        console.error("SERVER ERROR:",text();
+        alert("Backend error.check console.");
+        return;
       }
-    } catch (error) {
-      console.error("NETWORK ERROR:", error);
-      alert("Server not reachable");
+
+      comst data=await response.json();
+      alert("message sent successfully!");
+      form.reset();
+
+    }catch(error){
+      console.error("Network error:",error);
+      alert("server not reachable");
     }
-  });
-});
+        
