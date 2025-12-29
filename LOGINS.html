@@ -622,6 +622,39 @@
     </style>
     </style>
 </head>
+    <script>
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const data = {
+    firstName: document.getElementById("firstName").value,
+    lastName: document.getElementById("lastName").value,
+    email: document.getElementById("email").value,
+    phoneNumber: document.getElementById("phone").value,
+    location: document.getElementById("location").value,
+    password: document.getElementById("password").value,
+    confirmPassword: document.getElementById("confirmPassword").value,
+  };
+
+  const response = await fetch(
+    "https://agronomy-backend-ehk1.onrender.com/api/register",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }
+  );
+
+  const result = await response.json();
+
+  if (response.ok) {
+    alert("Registration successful");
+    window.location.href = "logins.html";
+  } else {
+    alert(result.message);
+  }
+});
+</script>
 <body>
     <!-- Header -->
     <header class="main-header">
@@ -3255,4 +3288,5 @@
     </script>
 </body>
 </html>
+
 
