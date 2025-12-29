@@ -21,16 +21,22 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Sending payload:", payload);
 
     const API_URL = "https://agronomy-backend-ehk1.onrender.com/api/contact";
+    
+const response = await fetch("https://agronomy-backend-ehk…r.com/api/contact", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    fullName: nameInput.value,
+    phoneNumber: phoneInput.value,
+    email: emailInput.value,
+    subject: subjectInput.value,
+    message: messageInput.value
+  })
+});
 
-    try {
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-      });
-
+   
       if (!response.ok) {
         const errorText = await response.text();
         console,error("Backend error:",data);
