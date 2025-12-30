@@ -26,6 +26,8 @@
             --success: #388E3C;
             --warning: #F57C00;
             --info: #1976D2;
+            --invoice-bg: #FFFDE7;
+            --invoice-header: #4CAF50;
         }
 
         body {
@@ -45,18 +47,20 @@
         /* Header and Navigation */
         .main-header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            color: white;
-            padding: 15px 0;
+            color: var(--secondary);
+            padding: 10px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--secondary);
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -64,7 +68,7 @@
             align-items: center;
             gap: 15px;
             text-decoration: none;
-            color: white;
+            color: var(--secondary);
         }
 
         .logo-img {
@@ -76,6 +80,7 @@
             align-items: center;
             justify-content: center;
             padding: 5px;
+            border: 2px solid var(--secondary);
         }
 
         .logo-img img {
@@ -84,20 +89,37 @@
             object-fit: contain;
         }
 
+        .logo-text {
+            text-align: left;
+        }
+
         .logo-text h1 {
             font-size: 1.5rem;
             margin-bottom: 2px;
+            color: var(--secondary);
+            font-weight: bold;
         }
 
         .logo-text p {
             font-size: 0.85rem;
             opacity: 0.9;
+            color: white;
+        }
+
+        .system-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--secondary);
+            text-align: center;
+            flex: 1;
+            margin: 0 15px;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -106,6 +128,7 @@
             padding: 8px 15px;
             border-radius: 4px;
             transition: background-color 0.3s;
+            white-space: nowrap;
         }
 
         .nav-links a:hover {
@@ -123,6 +146,7 @@
             background: rgba(255,255,255,0.1);
             padding: 8px 15px;
             border-radius: 20px;
+            flex-wrap: wrap;
         }
 
         .user-avatar {
@@ -137,9 +161,24 @@
             font-weight: bold;
         }
 
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         /* Main Content */
         .main-content {
-            padding: 30px 0;
+            padding: 25px 0;
             min-height: calc(100vh - 80px);
         }
 
@@ -162,7 +201,7 @@
             background: white;
             border-radius: 12px;
             box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-            padding: 25px;
+            padding: 20px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -206,6 +245,7 @@
             gap: 8px;
             transition: all 0.3s;
             text-decoration: none;
+            font-size: 0.9rem;
         }
 
         .btn-primary {
@@ -283,12 +323,14 @@
         /* Tables */
         .table-responsive {
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
+            min-width: 600px;
         }
 
         .table th {
@@ -353,12 +395,13 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             width: 100%;
             max-width: 400px;
-            padding: 40px;
+            padding: 30px;
+            margin: 20px;
         }
 
         .login-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .login-header h2 {
@@ -369,7 +412,7 @@
         .login-tabs {
             display: flex;
             gap: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .login-tab {
@@ -391,7 +434,7 @@
         /* Charts */
         .chart-container {
             position: relative;
-            height: 300px;
+            height: 250px;
             margin-top: 20px;
         }
 
@@ -407,12 +450,13 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
         .modal-content {
             background: white;
             border-radius: 12px;
-            width: 90%;
+            width: 100%;
             max-width: 800px;
             max-height: 90vh;
             overflow-y: auto;
@@ -422,12 +466,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 30px;
+            padding: 20px;
             border-bottom: 1px solid var(--light-gray);
         }
 
         .modal-body {
-            padding: 30px;
+            padding: 20px;
         }
 
         .close-modal {
@@ -436,31 +480,83 @@
             font-size: 24px;
             cursor: pointer;
             color: var(--gray);
+            line-height: 1;
         }
 
         /* Invoice */
         .invoice {
-            background: white;
-            padding: 30px;
+            background: var(--invoice-bg);
+            padding: 25px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary);
         }
 
         .invoice-header {
-            display: flex;
-            justify-content: space-between;
+            background: var(--invoice-header);
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            color: white;
+            margin: -25px -25px 20px -25px;
+        }
+
+        .invoice-company {
+            text-align: center;
             margin-bottom: 30px;
         }
 
+        .invoice-company h2 {
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .invoice-from, .invoice-to {
+            flex: 1;
+            min-width: 200px;
+        }
+
         .invoice-items {
-            margin: 30px 0;
+            margin: 25px 0;
         }
 
         .invoice-total {
             text-align: right;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 2px solid var(--light-gray);
+        }
+
+        .invoice-footer {
+            text-align: center;
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 2px solid var(--light-gray);
+            border-top: 1px solid var(--light-gray);
+            font-style: italic;
+            color: var(--gray);
+        }
+
+        /* Expense Container */
+        .expense-container {
+            background: #FFF3E0;
+            border: 1px solid #FFB74D;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #FFE0B2;
         }
 
         /* Loading */
@@ -537,21 +633,80 @@
             gap: 10px;
         }
 
+        /* Month Selector */
+        .month-selector {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .month-btn {
+            padding: 8px 15px;
+            background: var(--light-gray);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .month-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Mobile Navigation */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .header-container {
                 flex-direction: column;
                 gap: 15px;
             }
             
-            .nav-links {
-                flex-wrap: wrap;
+            .logo, .system-title, .nav-links {
+                width: 100%;
                 justify-content: center;
+            }
+            
+            .logo {
+                justify-content: flex-start;
+            }
+            
+            .system-title {
+                text-align: center;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .nav-links.active {
+                display: flex;
             }
             
             .form-row {
                 flex-direction: column;
-                gap: 0;
+                gap: 15px;
             }
             
             .dashboard-grid {
@@ -562,13 +717,21 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .login-card {
-                padding: 25px;
-                margin: 20px;
+            .invoice-details {
+                flex-direction: column;
             }
             
             .modal-content {
-                width: 95%;
+                margin: 10px;
+            }
+            
+            .table {
+                min-width: 300px;
+            }
+            
+            .table th, .table td {
+                padding: 8px 10px;
+                font-size: 0.9rem;
             }
         }
 
@@ -579,102 +742,101 @@
             
             .card-actions {
                 flex-direction: column;
+                width: 100%;
             }
             
             .btn {
                 width: 100%;
                 justify-content: center;
+                margin-bottom: 5px;
+            }
+            
+            .user-info {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
+            
+            .invoice-header h2 {
+                font-size: 1.2rem;
+            }
+            
+            .invoice-company h2 {
+                font-size: 1.3rem;
             }
         }
-        /* Mobile Navigation */
-        @media (max-width: 768px) {
-            .nav {
-                flex-direction: column;
-                width: 100%;
-                display: none;
-            }
-            
-            .nav.active {
-                display: flex;
-            }
-            
-            .menu-toggle {
-                display: block;
-                cursor: pointer;
-            }
-            
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-        
-        @media (min-width: 769px) {
+
+        @media (max-width: 360px) {
             .container {
-                max-width: 1200px;
-                padding: 0 40px;
+                padding: 0 10px;
             }
             
-            .menu-toggle {
-                display: none;
+            .card {
+                padding: 15px;
+            }
+            
+            .modal-body {
+                padding: 15px;
+            }
+            
+            .login-card {
+                padding: 20px;
             }
         }
-    </style>
+
+        /* Print Styles */
+        @media print {
+            .main-header, .modal-header, .btn {
+                display: none !important;
+            }
+            
+            .modal {
+                position: static;
+                background: none;
+            }
+            
+            .modal-content {
+                box-shadow: none;
+                max-height: none;
+            }
+            
+            .invoice {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+            }
+        }
     </style>
 </head>
-    <script>
-document.getElementById("registerForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const data = {
-    firstName: document.getElementById("firstName").value,
-    lastName: document.getElementById("lastName").value,
-    email: document.getElementById("email").value,
-    phoneNumber: document.getElementById("phone").value,
-    location: document.getElementById("location").value,
-    password: document.getElementById("password").value,
-    confirmPassword: document.getElementById("confirmPassword").value,
-  };
-
-  const response = await fetch(
-    "https://agronomy-backend-ehk1.onrender.com/api/logins",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    }
-  );
-
-  const result = await response.json();
-
-  if (response.ok) {
-    alert("Registration successful");
-    window.location.href = "logins.html";
-  } else {
-    alert(result.message);
-  }
-});
-</script>
 <body>
     <!-- Header -->
     <header class="main-header">
         <div class="container header-container">
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
                 <div class="logo-img">
                     <img src="aaron logo.webp" alt="Aaron Agronomy Services Logo" onerror="this.style.display='none'">
                 </div>
                 <div class="logo-text">
-                    <h1>Aaron Agronomy System</h1>
+                    <h1>AARON AGRONOMY SERVICES</h1>
                     <p>Smart Farming Solutions</p>
                 </div>
             </a>
             
-            <nav class="nav-links">
+            <div class="system-title">MKULIMA DIGITAL FARMER</div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-links" id="navLinks">
                 <a href="#" id="navDashboard" class="active"><i class="fas fa-home"></i> Dashboard</a>
                 <a href="#" id="navReports"><i class="fas fa-file-alt"></i> Reports</a>
                 <a href="#" id="navSales"><i class="fas fa-chart-line"></i> Sales</a>
                 <a href="#" id="navFarms"><i class="fas fa-tractor"></i> Farms</a>
-                <a href="#" id="navInvoices"><i class="fas fa-receipt"></i> Invoices</a>
+                <a href="#" id="navInvoices">
+                    <i class="fas fa-receipt"></i> Invoices
+                    <span class="notification-badge" id="invoiceNotification" style="display: none;">0</span>
+                </a>
                 
                 <div class="user-info">
                     <div class="user-avatar" id="userAvatar">U</div>
@@ -698,8 +860,8 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
         <div class="modal-content">
             <div class="modal-body">
                 <div class="login-header">
-                    <h2>Aaron Agronomy System</h2>
-                    <p>Select your login type</p>
+                    <h2>MKULIMA DIGITAL FARMER</h2>
+                    <p>Aaron Agronomy System</p>
                 </div>
                 
                 <div class="login-tabs">
@@ -844,9 +1006,24 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                         <input type="number" id="saleTotal" class="form-control" step="0.01" readonly>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="saleExpenses">Expenses (KSH)</label>
-                        <input type="number" id="saleExpenses" class="form-control" step="0.01" required>
+                    <div class="expense-container">
+                        <h4><i class="fas fa-money-bill-wave"></i> Expenses</h4>
+                        <div id="expenseItems">
+                            <div class="expense-item">
+                                <input type="text" class="form-control expense-desc" placeholder="Expense Description" style="flex: 2;">
+                                <input type="number" class="form-control expense-amount" placeholder="Amount (KSH)" step="0.01" style="flex: 1; margin-left: 10px;">
+                                <button type="button" class="btn btn-danger btn-sm" onclick="this.parentElement.remove()" style="margin-left: 10px;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-secondary" id="addExpenseBtn" style="margin-top: 10px;">
+                            <i class="fas fa-plus"></i> Add Expense
+                        </button>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <label for="totalExpenses">Total Expenses (KSH)</label>
+                            <input type="number" id="totalExpenses" class="form-control" step="0.01" readonly>
+                        </div>
                     </div>
                     
                     <div class="form-group">
@@ -861,6 +1038,112 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                     
                     <button type="submit" class="btn btn-success">
                         <i class="fas fa-save"></i> Save Daily Record
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Expense Modal (Farmer) -->
+    <div class="modal" id="addExpenseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Expense</h3>
+                <button class="close-modal" data-modal="addExpenseModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addExpenseForm">
+                    <div class="form-group">
+                        <label for="expenseDate">Date</label>
+                        <input type="date" id="expenseDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="expenseCategory">Category</label>
+                        <select id="expenseCategory" class="form-control" required>
+                            <option value="">Select Category</option>
+                            <option value="seeds">Seeds</option>
+                            <option value="fertilizer">Fertilizer</option>
+                            <option value="pesticides">Pesticides</option>
+                            <option value="labor">Labor</option>
+                            <option value="equipment">Equipment</option>
+                            <option value="transport">Transport</option>
+                            <option value="irrigation">Irrigation</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="expenseDescription">Description</label>
+                        <input type="text" id="expenseDescription" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount (KSH)</label>
+                        <input type="number" id="expenseAmount" class="form-control" step="0.01" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Save Expense
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Task Modal (Agronomist) -->
+    <div class="modal" id="addTaskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Task & Payment</h3>
+                <button class="close-modal" data-modal="addTaskModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addTaskForm">
+                    <div class="form-group">
+                        <label for="taskFarmer">Select Farmer</label>
+                        <select id="taskFarmer" class="form-control" required>
+                            <option value="">Select Farmer</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taskDate">Date</label>
+                        <input type="date" id="taskDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taskDescription">Task Description</label>
+                        <textarea id="taskDescription" class="form-control" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskHours">Hours Worked</label>
+                            <input type="number" id="taskHours" class="form-control" step="0.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskRate">Rate per Hour (KSH)</label>
+                            <input type="number" id="taskRate" class="form-control" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taskPayment">Total Payment (KSH)</label>
+                        <input type="number" id="taskPayment" class="form-control" step="0.01" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taskStatus">Status</label>
+                        <select id="taskStatus" class="form-control" required>
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                            <option value="paid">Paid</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Save Task
                     </button>
                 </form>
             </div>
@@ -980,68 +1263,6 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
         </div>
     </div>
 
-    <!-- Create Invoice Modal -->
-    <div class="modal" id="createInvoiceModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Create Invoice</h3>
-                <button class="close-modal" data-modal="createInvoiceModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="createInvoiceForm">
-                    <div class="form-group">
-                        <label for="invoiceFarmer">Select Farmer</label>
-                        <select id="invoiceFarmer" class="form-control" required>
-                            <option value="">Select Farmer</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="invoiceDate">Invoice Date</label>
-                        <input type="date" id="invoiceDate" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="invoiceDueDate">Due Date</label>
-                        <input type="date" id="invoiceDueDate" class="form-control" required>
-                    </div>
-                    
-                    <div class="invoice-items" id="invoiceItems">
-                        <h4>Invoice Items</h4>
-                        <div class="invoice-item">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" class="form-control invoice-desc" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Quantity</label>
-                                    <input type="number" class="form-control invoice-qty" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Price (KSH)</label>
-                                    <input type="number" class="form-control invoice-price" step="0.01" required>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-secondary" id="addInvoiceItem">
-                            <i class="fas fa-plus"></i> Add Item
-                        </button>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="invoiceNotes">Notes</label>
-                        <textarea id="invoiceNotes" class="form-control" rows="3"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-success">
-                        <i class="fas fa-file-invoice-dollar"></i> Create Invoice
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <!-- Upload PDF Modal (Agronomist) -->
     <div class="modal" id="uploadPdfModal">
         <div class="modal-content">
@@ -1091,6 +1312,68 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                     
                     <button type="submit" class="btn btn-success" style="width: 100%;">
                         <i class="fas fa-cloud-upload-alt"></i> Upload PDF
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Invoice Modal -->
+    <div class="modal" id="createInvoiceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Invoice</h3>
+                <button class="close-modal" data-modal="createInvoiceModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="createInvoiceForm">
+                    <div class="form-group">
+                        <label for="invoiceFarmer">Select Farmer</label>
+                        <select id="invoiceFarmer" class="form-control" required>
+                            <option value="">Select Farmer</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="invoiceDate">Invoice Date</label>
+                        <input type="date" id="invoiceDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="invoiceDueDate">Due Date</label>
+                        <input type="date" id="invoiceDueDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="invoice-items" id="invoiceItems">
+                        <h4>Invoice Items</h4>
+                        <div class="invoice-item">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input type="text" class="form-control invoice-desc" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Quantity</label>
+                                    <input type="number" class="form-control invoice-qty" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Unit Price (KSH)</label>
+                                    <input type="number" class="form-control invoice-price" step="0.01" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-secondary" id="addInvoiceItem">
+                            <i class="fas fa-plus"></i> Add Item
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="invoiceNotes">Notes</label>
+                        <textarea id="invoiceNotes" class="form-control" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-file-invoice-dollar"></i> Create Invoice
                     </button>
                 </form>
             </div>
@@ -1147,7 +1430,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
             </div>
         </div>
     </div>
-<script src="js/logins.js"></script>
+
     <script>
         // Agronomy System
         class AgronomySystem {
@@ -1155,15 +1438,50 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 this.backendUrl = 'https://agronomy-backend-ehk1.onrender.com';
                 this.currentUser = null;
                 this.userType = null;
+                this.currentMonth = new Date().toISOString().slice(0, 7); // YYYY-MM
                 this.initialize();
             }
 
             initialize() {
                 this.setupEventListeners();
                 this.checkLoginStatus();
+                this.initializeData();
+            }
+
+            initializeData() {
+                // Initialize localStorage with default data if empty
+                if (!localStorage.getItem('farmers')) {
+                    localStorage.setItem('farmers', JSON.stringify([]));
+                }
+                if (!localStorage.getItem('sales')) {
+                    localStorage.setItem('sales', JSON.stringify([]));
+                }
+                if (!localStorage.getItem('expenses')) {
+                    localStorage.setItem('expenses', JSON.stringify([]));
+                }
+                if (!localStorage.getItem('farms')) {
+                    localStorage.setItem('farms', JSON.stringify([]));
+                }
+                if (!localStorage.getItem('reports')) {
+                    localStorage.setItem('reports', JSON.stringify([]));
+                }
+                if (!localStorage.getItem('invoices')) {
+                    localStorage.setItem('invoices', JSON.stringify([]));
+                }
+                if (!localStorage.getItem('tasks')) {
+                    localStorage.setItem('tasks', JSON.stringify([]));
+                }
+                if (!localStorage.getItem('pdfs')) {
+                    localStorage.setItem('pdfs', JSON.stringify([]));
+                }
             }
 
             setupEventListeners() {
+                // Menu toggle for mobile
+                document.getElementById('menuToggle').addEventListener('click', () => {
+                    document.getElementById('navLinks').classList.toggle('active');
+                });
+
                 // Login/Signup tabs
                 document.querySelectorAll('.login-tab').forEach(tab => {
                     tab.addEventListener('click', (e) => {
@@ -1198,28 +1516,62 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 });
 
                 // Sale form calculations
-                document.getElementById('saleQuantity').addEventListener('input', () => this.calculateSaleTotal());
-                document.getElementById('salePrice').addEventListener('input', () => this.calculateSaleTotal());
-                document.getElementById('saleExpenses').addEventListener('input', () => this.calculateProfit());
+                const saleQuantity = document.getElementById('saleQuantity');
+                const salePrice = document.getElementById('salePrice');
+                if (saleQuantity) saleQuantity.addEventListener('input', () => this.calculateSaleTotal());
+                if (salePrice) salePrice.addEventListener('input', () => this.calculateSaleTotal());
+                
+                const addExpenseBtn = document.getElementById('addExpenseBtn');
+                if (addExpenseBtn) addExpenseBtn.addEventListener('click', () => this.addExpenseItem());
+
+                // Expense item calculations
+                document.addEventListener('input', (e) => {
+                    if (e.target.classList.contains('expense-amount')) {
+                        this.calculateTotalExpenses();
+                    }
+                });
+
+                // Task form calculations
+                const taskHours = document.getElementById('taskHours');
+                const taskRate = document.getElementById('taskRate');
+                if (taskHours) taskHours.addEventListener('input', () => this.calculateTaskPayment());
+                if (taskRate) taskRate.addEventListener('input', () => this.calculateTaskPayment());
 
                 // Modal close buttons
                 document.querySelectorAll('.close-modal').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         const modalId = e.target.getAttribute('data-modal');
                         this.hideModal(modalId);
+                        document.getElementById('navLinks').classList.remove('active');
                     });
                 });
 
-                // Add sale button
+                // Add invoice item
+                const addInvoiceItem = document.getElementById('addInvoiceItem');
+                if (addInvoiceItem) addInvoiceItem.addEventListener('click', () => this.addInvoiceItem());
+
+                // File input change event
+                const pdfFile = document.getElementById('pdfFile');
+                if (pdfFile) {
+                    pdfFile.addEventListener('change', function(e) {
+                        const fileName = document.getElementById('pdfFileName');
+                        if (this.files.length > 0) {
+                            fileName.textContent = 'Selected: ' + this.files[0].name;
+                            fileName.style.color = 'var(--success)';
+                        } else {
+                            fileName.textContent = 'No file selected';
+                            fileName.style.color = 'var(--gray)';
+                        }
+                    });
+                }
+
+                // Event delegation for dynamic buttons
                 document.addEventListener('click', (e) => {
                     if (e.target.id === 'addSaleBtn' || e.target.closest('#addSaleBtn')) {
                         this.showModal('addSaleModal');
                     }
                     if (e.target.id === 'addFarmBtn' || e.target.closest('#addFarmBtn')) {
                         this.showModal('addFarmModal');
-                    }
-                    if (e.target.id === 'addInvoiceItem') {
-                        this.addInvoiceItem();
                     }
                     if (e.target.id === 'createReportBtn' || e.target.closest('#createReportBtn')) {
                         this.loadFarmersForReport();
@@ -1229,8 +1581,12 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                         this.loadFarmersForInvoice();
                         this.showModal('createInvoiceModal');
                     }
-                    if (e.target.id === 'toggleFarmersViewBtn' || e.target.closest('#toggleFarmersViewBtn')) {
-                        this.toggleFarmersView();
+                    if (e.target.id === 'addExpenseBtnMain' || e.target.closest('#addExpenseBtnMain')) {
+                        this.showModal('addExpenseModal');
+                    }
+                    if (e.target.id === 'addTaskBtn' || e.target.closest('#addTaskBtn')) {
+                        this.loadFarmersForTask();
+                        this.showModal('addTaskModal');
                     }
                     if (e.target.id === 'uploadPdfBtn' || e.target.closest('#uploadPdfBtn')) {
                         this.loadFarmersForPdfUpload();
@@ -1242,21 +1598,24 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 });
 
                 // Form submissions
-                document.getElementById('addSaleForm').addEventListener('submit', (e) => this.handleAddSale(e));
-                document.getElementById('addFarmForm').addEventListener('submit', (e) => this.handleAddFarm(e));
-                document.getElementById('createReportForm').addEventListener('submit', (e) => this.handleCreateReport(e));
-                document.getElementById('createInvoiceForm').addEventListener('submit', (e) => this.handleCreateInvoice(e));
-                document.getElementById('uploadPdfForm').addEventListener('submit', (e) => this.handleUploadPdf(e));
+                const forms = ['addSaleForm', 'addFarmForm', 'createReportForm', 'createInvoiceForm', 
+                             'addExpenseForm', 'addTaskForm', 'uploadPdfForm'];
+                forms.forEach(formId => {
+                    const form = document.getElementById(formId);
+                    if (form) {
+                        form.addEventListener('submit', (e) => {
+                            e.preventDefault();
+                            this[`handle${formId.charAt(0).toUpperCase() + formId.slice(1)}`](e);
+                        });
+                    }
+                });
 
-                // File input change event
-                document.getElementById('pdfFile').addEventListener('change', function(e) {
-                    const fileName = document.getElementById('pdfFileName');
-                    if (this.files.length > 0) {
-                        fileName.textContent = 'Selected: ' + this.files[0].name;
-                        fileName.style.color = 'var(--success)';
-                    } else {
-                        fileName.textContent = 'No file selected';
-                        fileName.style.color = 'var(--gray)';
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    const navLinks = document.getElementById('navLinks');
+                    const menuToggle = document.getElementById('menuToggle');
+                    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
                     }
                 });
             }
@@ -1282,35 +1641,45 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 const email = document.getElementById('farmerEmail').value;
                 const password = document.getElementById('farmerPassword').value;
 
+                // Quick login - check localStorage first
+                const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
+                const farmer = farmers.find(f => f.email === email && f.password === password);
+                
+                if (farmer) {
+                    this.currentUser = farmer;
+                    this.userType = 'farmer';
+                    this.saveToLocalStorage();
+                    this.hideModal('loginModal');
+                    this.loadDashboard();
+                    this.updateInvoiceNotifications();
+                    this.showNotification('Login successful!', 'success');
+                    return;
+                }
+
                 try {
-                    const response = await this.apiRequest('/farmers/login', 'POST', { email, password });
-                    
-                    if (response.success) {
-                        this.currentUser = response.data;
+                    const response = await fetch(this.backendUrl + '/farmers/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        this.currentUser = data;
                         this.userType = 'farmer';
                         this.saveToLocalStorage();
                         this.hideModal('loginModal');
                         this.loadDashboard();
-                        this.showNotification('Login successful!', 'success');
-                    } else {
-                        this.showNotification(response.message || 'Login failed', 'error');
-                    }
-                } catch (error) {
-                    console.error('Login error:', error);
-                    // Fallback to localStorage for demo
-                    const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
-                    const farmer = farmers.find(f => f.email === email && f.password === password);
-                    
-                    if (farmer) {
-                        this.currentUser = farmer;
-                        this.userType = 'farmer';
-                        this.saveToLocalStorage();
-                        this.hideModal('loginModal');
-                        this.loadDashboard();
+                        this.updateInvoiceNotifications();
                         this.showNotification('Login successful!', 'success');
                     } else {
                         this.showNotification('Invalid email or password', 'error');
                     }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    this.showNotification('Login failed. Please try again.', 'error');
                 }
             }
 
@@ -1319,18 +1688,19 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 const username = document.getElementById('agroUsername').value;
                 const password = document.getElementById('agroPassword').value;
 
-                // Hardcoded agronomist credentials for demo
+                // Quick login - hardcoded credentials
                 if (username === 'aaron_agronomy' && password === '9898') {
                     this.currentUser = {
                         id: 'AGRO-001',
                         name: 'Aaron Agronomist',
-                        email: 'agronomist@aaronsystem.com',
+                        email: 'aaronmuthini0@gmail.com',
                         role: 'agronomist'
                     };
                     this.userType = 'agronomist';
                     this.saveToLocalStorage();
                     this.hideModal('loginModal');
                     this.loadDashboard();
+                    this.updateInvoiceNotifications();
                     this.showNotification('Welcome, Agronomist!', 'success');
                 } else {
                     this.showNotification('Invalid credentials', 'error');
@@ -1354,20 +1724,27 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 }
 
                 try {
-                    const response = await this.apiRequest('/farmers/register', 'POST', formData);
-                    
-                    if (response.success) {
+                    const response = await fetch(this.backendUrl + '/farmers/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
                         this.showNotification('Account created successfully!', 'success');
                         // Switch to login form
                         document.getElementById('farmerSignupForm').style.display = 'none';
                         document.getElementById('farmerLoginForm').style.display = 'block';
                         document.getElementById('farmerEmail').value = formData.email;
                     } else {
-                        this.showNotification(response.message || 'Registration failed', 'error');
+                        this.showNotification('Registration failed', 'error');
                     }
                 } catch (error) {
                     console.error('Registration error:', error);
-                    // Fallback to localStorage for demo
+                    // Fallback to localStorage
                     const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
                     const farmerId = 'FARM-' + Date.now().toString().slice(-6);
                     const newFarmer = {
@@ -1379,11 +1756,6 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                     
                     farmers.push(newFarmer);
                     localStorage.setItem('farmers', JSON.stringify(farmers));
-                    localStorage.setItem('farms', JSON.stringify([]));
-                    localStorage.setItem('sales', JSON.stringify([]));
-                    localStorage.setItem('reports', JSON.stringify([]));
-                    localStorage.setItem('invoices', JSON.stringify([]));
-                    localStorage.setItem('pdfs', JSON.stringify([]));
                     
                     this.showNotification('Account created successfully! Farmer ID: ' + farmerId, 'success');
                     document.getElementById('farmerSignupForm').style.display = 'none';
@@ -1399,6 +1771,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                     this.userType = localStorage.getItem('userType');
                     this.hideModal('loginModal');
                     this.loadDashboard();
+                    this.updateInvoiceNotifications();
                 } else {
                     this.showModal('loginModal');
                 }
@@ -1409,6 +1782,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 this.userType = null;
                 localStorage.removeItem('currentUser');
                 localStorage.removeItem('userType');
+                document.getElementById('navLinks').classList.remove('active');
                 this.showModal('loginModal');
                 this.showNotification('Logged out successfully', 'info');
             }
@@ -1420,13 +1794,16 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 
                 if (this.userType === 'farmer') {
                     const sales = JSON.parse(localStorage.getItem('sales')) || [];
+                    const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
                     const farms = JSON.parse(localStorage.getItem('farms')) || [];
                     const reports = JSON.parse(localStorage.getItem('reports')) || [];
                     const pdfs = JSON.parse(localStorage.getItem('pdfs')) || [];
+                    const farmerReports = reports.filter(p => p.farmerId === this.currentUser.id);
                     const farmerPdfs = pdfs.filter(p => p.farmerId === this.currentUser.id);
                     
+                    // Calculate totals
                     const totalSales = sales.reduce((sum, sale) => sum + sale.total, 0);
-                    const totalExpenses = sales.reduce((sum, sale) => sum + sale.expenses, 0);
+                    const totalExpenses = expenses.reduce((sum, exp) => sum + exp.amount, 0);
                     const totalProfit = totalSales - totalExpenses;
                     
                     // Update user info
@@ -1444,34 +1821,34 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                         <div class="stats-grid">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3><i class="fas fa-dollar-sign"></i> Total Sales</h3>
+                                    <h3><i class="fas fa-money-bill-wave"></i> Total Sales</h3>
                                 </div>
-                                <h2 style="color: var(--success); margin: 20px 0;">$${totalSales.toFixed(2)}</h2>
+                                <h2 style="color: var(--success); margin: 20px 0;">KSH ${totalSales.toLocaleString()}</h2>
                                 <p>All time sales</p>
                             </div>
                             
                             <div class="card">
                                 <div class="card-header">
-                                    <h3><i class="fas fa-chart-line"></i> Total Profit</h3>
+                                    <h3><i class="fas fa-chart-line"></i> Total Expenses</h3>
                                 </div>
-                                <h2 style="color: var(--primary); margin: 20px 0;">$${totalProfit.toFixed(2)}</h2>
+                                <h2 style="color: var(--danger); margin: 20px 0;">KSH ${totalExpenses.toLocaleString()}</h2>
+                                <p>All expenses</p>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-tractor"></i> Total Profit</h3>
+                                </div>
+                                <h2 style="color: ${totalProfit >= 0 ? 'var(--primary)' : 'var(--danger)'}; margin: 20px 0;">KSH ${totalProfit.toLocaleString()}</h2>
                                 <p>Net profit</p>
                             </div>
                             
                             <div class="card">
                                 <div class="card-header">
-                                    <h3><i class="fas fa-tractor"></i> Farms</h3>
+                                    <h3><i class="fas fa-file-alt"></i> Reports</h3>
                                 </div>
-                                <h2 style="color: var(--info); margin: 20px 0;">${farms.length}</h2>
-                                <p>Active farms</p>
-                            </div>
-                            
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3><i class="fas fa-file-pdf"></i> Documents</h3>
-                                </div>
-                                <h2 style="color: var(--warning); margin: 20px 0;">${farmerPdfs.length}</h2>
-                                <p>PDF documents</p>
+                                <h2 style="color: var(--info); margin: 20px 0;">${farmerReports.length}</h2>
+                                <p>Farm reports</p>
                             </div>
                         </div>
                         
@@ -1502,7 +1879,32 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                             
                             <div class="card">
                                 <div class="card-header">
-                                    <h3><i class="fas fa-file-download"></i> My Documents</h3>
+                                    <h3><i class="fas fa-money-bill-wave"></i> Expenses</h3>
+                                    <div class="card-actions">
+                                        <button class="btn btn-sm btn-danger" id="addExpenseBtnMain">
+                                            <i class="fas fa-plus"></i> Add Expense
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="expense-container">
+                                    ${expenses.length > 0 ? 
+                                        expenses.slice(-3).reverse().map(exp => `
+                                            <div class="expense-item">
+                                                <span>${exp.description}</span>
+                                                <span style="color: var(--danger);">KSH ${exp.amount.toLocaleString()}</span>
+                                            </div>
+                                        `).join('') : 
+                                        '<p>No expenses recorded yet</p>'
+                                    }
+                                </div>
+                                <p style="margin-top: 10px; text-align: right;">
+                                    <strong>Total: KSH ${totalExpenses.toLocaleString()}</strong>
+                                </p>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-file-pdf"></i> PDF Documents</h3>
                                     <div class="card-actions">
                                         <button class="btn btn-sm btn-primary" id="viewMyPdfsBtn">
                                             <i class="fas fa-folder-open"></i> View PDFs
@@ -1519,7 +1921,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                             
                             <div class="card">
                                 <div class="card-header">
-                                    <h3><i class="fas fa-chart-pie"></i> Profit Analysis</h3>
+                                    <h3><i class="fas fa-chart-pie"></i> Sales & Expenses</h3>
                                 </div>
                                 <div class="chart-container">
                                     <canvas id="profitChart"></canvas>
@@ -1529,16 +1931,20 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                     `;
                     
                     document.getElementById('mainContent').innerHTML = html;
-                    this.renderProfitChart(sales);
+                    this.renderSalesExpenseChart(sales, expenses);
                     
                 } else if (this.userType === 'agronomist') {
                     const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
                     const sales = JSON.parse(localStorage.getItem('sales')) || [];
+                    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
                     const reports = JSON.parse(localStorage.getItem('reports')) || [];
                     const pdfs = JSON.parse(localStorage.getItem('pdfs')) || [];
                     
-                    const totalSales = sales.reduce((sum, sale) => sum + sale.total, 0);
-                    const totalProfit = sales.reduce((sum, sale) => sum + (sale.total - sale.expenses), 0);
+                    // Calculate totals
+                    const systemSales = sales.reduce((sum, sale) => sum + sale.total, 0);
+                    const systemExpenses = tasks.reduce((sum, task) => sum + task.payment, 0);
+                    const systemProfit = systemSales - systemExpenses;
+                    const agronomistProfit = tasks.filter(t => t.status === 'paid').reduce((sum, task) => sum + task.payment, 0);
                     
                     // Update user info
                     document.getElementById('userAvatar').textContent = 'AA';
@@ -1557,26 +1963,26 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                             
                             <div class="card">
                                 <div class="card-header">
+                                    <h3><i class="fas fa-money-bill-wave"></i> System Sales</h3>
+                                </div>
+                                <h2 style="color: var(--primary); margin: 20px 0;">KSH ${systemSales.toLocaleString()}</h2>
+                                <p>Total system sales</p>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-tasks"></i> Tasks Profit</h3>
+                                </div>
+                                <h2 style="color: var(--info); margin: 20px 0;">KSH ${agronomistProfit.toLocaleString()}</h2>
+                                <p>Your earnings</p>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">
                                     <h3><i class="fas fa-chart-line"></i> System Profit</h3>
                                 </div>
-                                <h2 style="color: var(--primary); margin: 20px 0;">$${totalProfit.toFixed(2)}</h2>
-                                <p>Total system profit</p>
-                            </div>
-                            
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3><i class="fas fa-file-alt"></i> Reports</h3>
-                                </div>
-                                <h2 style="color: var(--info); margin: 20px 0;">${reports.length}</h2>
-                                <p>Reports generated</p>
-                            </div>
-                            
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3><i class="fas fa-file-pdf"></i> PDFs Uploaded</h3>
-                                </div>
-                                <h2 style="color: var(--warning); margin: 20px 0;">${pdfs.length}</h2>
-                                <p>Documents shared</p>
+                                <h2 style="color: ${systemProfit >= 0 ? 'var(--primary)' : 'var(--danger)'}; margin: 20px 0;">KSH ${systemProfit.toLocaleString()}</h2>
+                                <p>Net system profit</p>
                             </div>
                         </div>
                         
@@ -1585,13 +1991,36 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                                 <div class="card-header">
                                     <h3><i class="fas fa-users"></i> Farmers Management</h3>
                                     <div class="card-actions">
-                                        <button class="btn btn-sm btn-success" id="toggleFarmersViewBtn">
+                                        <button class="btn btn-sm btn-info" onclick="system.toggleFarmersView()">
                                             <i class="fas fa-eye"></i> View More
                                         </button>
                                     </div>
                                 </div>
                                 <div id="farmersTableContainer">
-                                    ${this.renderFarmersTable(farmers.slice(0, 5), false)}
+                                    ${this.renderFarmersTable(farmers.slice(0, 3), true)}
+                                </div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-tasks"></i> Tasks & Payments</h3>
+                                    <div class="card-actions">
+                                        <button class="btn btn-sm btn-success" id="addTaskBtn">
+                                            <i class="fas fa-plus"></i> Add Task
+                                        </button>
+                                    </div>
+                                </div>
+                                <p>Record tasks and payments for services rendered.</p>
+                                <div class="expense-container" style="margin-top: 15px;">
+                                    ${tasks.length > 0 ? 
+                                        tasks.slice(-3).reverse().map(task => `
+                                            <div class="expense-item">
+                                                <span>${task.description.substring(0, 30)}...</span>
+                                                <span style="color: var(--success);">KSH ${task.payment.toLocaleString()}</span>
+                                            </div>
+                                        `).join('') : 
+                                        '<p>No tasks recorded yet</p>'
+                                    }
                                 </div>
                             </div>
                             
@@ -1602,30 +2031,19 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                                         <button class="btn btn-sm btn-success" id="createReportBtn">
                                             <i class="fas fa-plus"></i> New Report
                                         </button>
-                                    </div>
-                                </div>
-                                <p>Create detailed reports for farmers with findings and recommendations.</p>
-                                <div style="margin-top: 15px;">
-                                    <button class="btn btn-sm btn-primary" onclick="system.downloadAllReports()">
-                                        <i class="fas fa-download"></i> Download All Reports
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3><i class="fas fa-file-upload"></i> Upload PDFs</h3>
-                                    <div class="card-actions">
-                                        <button class="btn btn-sm btn-success" id="uploadPdfBtn">
+                                        <button class="btn btn-sm btn-primary" id="uploadPdfBtn">
                                             <i class="fas fa-upload"></i> Upload PDF
                                         </button>
                                     </div>
                                 </div>
-                                <p>Upload farming guides, reports, certificates, and other PDF documents for farmers.</p>
+                                <p>Create detailed reports and upload PDF documents for farmers.</p>
                                 <div style="margin-top: 15px;">
-                                    <small style="color: var(--gray);">
-                                        <i class="fas fa-info-circle"></i> Farmers can download these from their dashboard
-                                    </small>
+                                    <span class="badge badge-info">
+                                        <i class="fas fa-file-alt"></i> ${reports.length} Reports
+                                    </span>
+                                    <span class="badge badge-warning" style="margin-left: 10px;">
+                                        <i class="fas fa-file-pdf"></i> ${pdfs.length} PDFs
+                                    </span>
                                 </div>
                             </div>
                             
@@ -1645,36 +2063,23 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                                     </button>
                                 </div>
                             </div>
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3><i class="fas fa-chart-area"></i> System Performance</h3>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="agroChart"></canvas>
+                                </div>
+                            </div>
                         </div>
                     `;
                     
                     document.getElementById('mainContent').innerHTML = html;
-                    this.renderAgroSalesChart(sales);
+                    this.renderAgroChart(sales, tasks);
                 }
-            }
-
-            toggleFarmersView() {
-                const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
-                const container = document.getElementById('farmersTableContainer');
-                const button = document.getElementById('toggleFarmersViewBtn');
                 
-                if (!container || !button) return;
-                
-                const isShowingAll = button.innerHTML.includes('View Less');
-                
-                if (isShowingAll) {
-                    // Show limited view (names only)
-                    container.innerHTML = this.renderFarmersTable(farmers.slice(0, 5), true);
-                    button.innerHTML = '<i class="fas fa-eye"></i> View More';
-                    button.classList.remove('btn-warning');
-                    button.classList.add('btn-success');
-                } else {
-                    // Show all records with full details
-                    container.innerHTML = this.renderFarmersTable(farmers, false);
-                    button.innerHTML = '<i class="fas fa-eye-slash"></i> View Less';
-                    button.classList.remove('btn-success');
-                    button.classList.add('btn-warning');
-                }
+                document.getElementById('navLinks').classList.remove('active');
             }
 
             async loadSales(e = null) {
@@ -1683,6 +2088,9 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 if (this.userType !== 'farmer') return;
                 
                 const sales = JSON.parse(localStorage.getItem('sales')) || [];
+                
+                // Get unique months
+                const months = [...new Set(sales.map(s => s.date.slice(0, 7)))].sort().reverse();
                 
                 let html = `
                     <div class="card">
@@ -1698,51 +2106,22 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                             </div>
                         </div>
                         
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Crop</th>
-                                        <th>Quantity (kg)</th>
-                                        <th>Price/Kg</th>
-                                        <th>Total Sales</th>
-                                        <th>Expenses</th>
-                                        <th>Profit</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                `;
-                
-                sales.forEach(sale => {
-                    const profit = sale.total - sale.expenses;
-                    html += `
-                        <tr>
-                            <td>${new Date(sale.date).toLocaleDateString()}</td>
-                            <td>${sale.crop}</td>
-                            <td>${sale.quantity}</td>
-                            <td>$${sale.pricePerKg.toFixed(2)}</td>
-                            <td>$${sale.total.toFixed(2)}</td>
-                            <td>$${sale.expenses.toFixed(2)}</td>
-                            <td><span class="badge ${profit >= 0 ? 'badge-success' : 'badge-danger'}">$${profit.toFixed(2)}</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-danger" onclick="system.deleteSale('${sale.id}')">
-                                    <i class="fas fa-trash"></i>
+                        <div class="month-selector">
+                            ${months.map(month => `
+                                <button class="month-btn ${month === this.currentMonth ? 'active' : ''}" 
+                                        onclick="system.selectMonth('${month}')">
+                                    ${new Date(month + '-01').toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
                                 </button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                
-                html += `
-                                </tbody>
-                            </table>
+                            `).join('')}
+                        </div>
+                        
+                        <div id="monthSalesContent">
+                            ${this.renderMonthSales(this.currentMonth)}
                         </div>
                         
                         <div class="card" style="margin-top: 30px;">
                             <div class="card-header">
-                                <h3><i class="fas fa-chart-area"></i> Sales & Profit Chart</h3>
+                                <h3><i class="fas fa-chart-area"></i> Monthly Sales & Expenses</h3>
                             </div>
                             <div class="chart-container">
                                 <canvas id="salesChart"></canvas>
@@ -1754,7 +2133,90 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
                 document.getElementById('navSales').classList.add('active');
                 
-                this.renderSalesChart(sales);
+                this.renderMonthlySalesChart(sales);
+                document.getElementById('navLinks').classList.remove('active');
+            }
+
+            selectMonth(month) {
+                this.currentMonth = month;
+                document.querySelectorAll('.month-btn').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+                document.getElementById('monthSalesContent').innerHTML = this.renderMonthSales(month);
+            }
+
+            renderMonthSales(month) {
+                const sales = JSON.parse(localStorage.getItem('sales')) || [];
+                const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+                
+                const monthSales = sales.filter(s => s.date.startsWith(month));
+                const monthExpenses = expenses.filter(e => e.date.startsWith(month));
+                
+                if (monthSales.length === 0) {
+                    return '<p>No sales records for this month.</p>';
+                }
+                
+                let html = `
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Crop</th>
+                                    <th>Quantity (kg)</th>
+                                    <th>Price/Kg</th>
+                                    <th>Total Sales</th>
+                                    <th>Expenses</th>
+                                    <th>Profit</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                monthSales.forEach(sale => {
+                    const dayExpenses = monthExpenses.filter(e => e.date === sale.date)
+                        .reduce((sum, exp) => sum + exp.amount, 0);
+                    const profit = sale.total - dayExpenses;
+                    
+                    html += `
+                        <tr>
+                            <td>${new Date(sale.date).toLocaleDateString()}</td>
+                            <td>${sale.crop}</td>
+                            <td>${sale.quantity}</td>
+                            <td>KSH ${sale.pricePerKg.toFixed(2)}</td>
+                            <td>KSH ${sale.total.toFixed(2)}</td>
+                            <td>KSH ${dayExpenses.toFixed(2)}</td>
+                            <td><span class="badge ${profit >= 0 ? 'badge-success' : 'badge-danger'}">KSH ${profit.toFixed(2)}</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-danger" onclick="system.deleteSale('${sale.id}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                // Add month totals
+                const monthTotalSales = monthSales.reduce((sum, sale) => sum + sale.total, 0);
+                const monthTotalExpenses = monthExpenses.reduce((sum, exp) => sum + exp.amount, 0);
+                const monthTotalProfit = monthTotalSales - monthTotalExpenses;
+                
+                html += `
+                            </tbody>
+                            <tfoot>
+                                <tr style="background-color: #f8f9fa; font-weight: bold;">
+                                    <td colspan="4">Month Total</td>
+                                    <td>KSH ${monthTotalSales.toFixed(2)}</td>
+                                    <td>KSH ${monthTotalExpenses.toFixed(2)}</td>
+                                    <td><span class="badge ${monthTotalProfit >= 0 ? 'badge-success' : 'badge-danger'}">KSH ${monthTotalProfit.toFixed(2)}</span></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                `;
+                
+                return html;
             }
 
             async loadFarms(e = null) {
@@ -1818,6 +2280,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 document.getElementById('mainContent').innerHTML = html;
                 document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
                 document.getElementById('navFarms').classList.add('active');
+                document.getElementById('navLinks').classList.remove('active');
             }
 
             async loadReports(e = null) {
@@ -1938,6 +2401,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 
                 document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
                 document.getElementById('navReports').classList.add('active');
+                document.getElementById('navLinks').classList.remove('active');
             }
 
             async loadInvoices(e = null) {
@@ -1992,7 +2456,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                             <td>${farmer ? `${farmer.firstName} ${farmer.lastName}` : 'Unknown'}</td>
                             <td>${new Date(invoice.date).toLocaleDateString()}</td>
                             <td>${new Date(invoice.dueDate).toLocaleDateString()}</td>
-                            <td>$${total.toFixed(2)}</td>
+                            <td>KSH ${total.toFixed(2)}</td>
                             <td>
                                 <span class="badge ${invoice.paid ? 'badge-success' : 'badge-warning'}">
                                     ${invoice.paid ? 'Paid' : 'Pending'}
@@ -2022,6 +2486,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 document.getElementById('mainContent').innerHTML = html;
                 document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
                 document.getElementById('navInvoices').classList.add('active');
+                document.getElementById('navLinks').classList.remove('active');
             }
 
             // Helper methods
@@ -2033,15 +2498,58 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 this.calculateProfit();
             }
 
+            addExpenseItem() {
+                const container = document.getElementById('expenseItems');
+                const newItem = document.createElement('div');
+                newItem.className = 'expense-item';
+                newItem.style.marginTop = '10px';
+                newItem.innerHTML = `
+                    <input type="text" class="form-control expense-desc" placeholder="Expense Description" style="flex: 2;">
+                    <input type="number" class="form-control expense-amount" placeholder="Amount (KSH)" step="0.01" style="flex: 1; margin-left: 10px;">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="this.parentElement.remove(); system.calculateTotalExpenses();" style="margin-left: 10px;">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                container.appendChild(newItem);
+            }
+
+            calculateTotalExpenses() {
+                let total = 0;
+                document.querySelectorAll('.expense-amount').forEach(input => {
+                    total += parseFloat(input.value) || 0;
+                });
+                document.getElementById('totalExpenses').value = total.toFixed(2);
+                this.calculateProfit();
+            }
+
             calculateProfit() {
                 const total = parseFloat(document.getElementById('saleTotal').value) || 0;
-                const expenses = parseFloat(document.getElementById('saleExpenses').value) || 0;
+                const expenses = parseFloat(document.getElementById('totalExpenses').value) || 0;
                 const profit = total - expenses;
                 document.getElementById('saleProfit').value = profit.toFixed(2);
             }
 
+            calculateTaskPayment() {
+                const hours = parseFloat(document.getElementById('taskHours').value) || 0;
+                const rate = parseFloat(document.getElementById('taskRate').value) || 0;
+                const payment = hours * rate;
+                document.getElementById('taskPayment').value = payment.toFixed(2);
+            }
+
             async handleAddSale(e) {
                 e.preventDefault();
+                
+                // Collect expense items
+                const expenseItems = [];
+                let totalExpenses = 0;
+                document.querySelectorAll('.expense-item').forEach(item => {
+                    const desc = item.querySelector('.expense-desc').value;
+                    const amount = parseFloat(item.querySelector('.expense-amount').value) || 0;
+                    if (desc && amount > 0) {
+                        expenseItems.push({ description: desc, amount: amount });
+                        totalExpenses += amount;
+                    }
+                });
                 
                 const sale = {
                     id: 'SALE-' + Date.now(),
@@ -2051,35 +2559,68 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                     quantity: parseFloat(document.getElementById('saleQuantity').value),
                     pricePerKg: parseFloat(document.getElementById('salePrice').value),
                     total: parseFloat(document.getElementById('saleTotal').value),
-                    expenses: parseFloat(document.getElementById('saleExpenses').value),
+                    expenses: totalExpenses,
+                    expenseItems: expenseItems,
                     profit: parseFloat(document.getElementById('saleProfit').value),
                     notes: document.getElementById('saleNotes').value,
                     createdAt: new Date().toISOString()
                 };
                 
-                try {
-                    const response = await this.apiRequest('/sales', 'POST', sale);
-                    
-                    if (response.success) {
-                        const sales = JSON.parse(localStorage.getItem('sales')) || [];
-                        sales.push(sale);
-                        localStorage.setItem('sales', JSON.stringify(sales));
-                        
-                        this.hideModal('addSaleModal');
-                        this.loadDashboard();
-                        this.showNotification('Daily sale record added!', 'success');
-                    }
-                } catch (error) {
-                    console.error('Error adding sale:', error);
-                    // Fallback to localStorage
-                    const sales = JSON.parse(localStorage.getItem('sales')) || [];
-                    sales.push(sale);
-                    localStorage.setItem('sales', JSON.stringify(sales));
-                    
-                    this.hideModal('addSaleModal');
-                    this.loadDashboard();
-                    this.showNotification('Daily sale record added!', 'success');
-                }
+                // Save to localStorage
+                const sales = JSON.parse(localStorage.getItem('sales')) || [];
+                sales.push(sale);
+                localStorage.setItem('sales', JSON.stringify(sales));
+                
+                this.hideModal('addSaleModal');
+                this.loadDashboard();
+                this.showNotification('Daily sale record added!', 'success');
+            }
+
+            async handleAddExpense(e) {
+                e.preventDefault();
+                
+                const expense = {
+                    id: 'EXP-' + Date.now(),
+                    farmerId: this.currentUser.id,
+                    date: document.getElementById('expenseDate').value,
+                    category: document.getElementById('expenseCategory').value,
+                    description: document.getElementById('expenseDescription').value,
+                    amount: parseFloat(document.getElementById('expenseAmount').value),
+                    createdAt: new Date().toISOString()
+                };
+                
+                const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+                expenses.push(expense);
+                localStorage.setItem('expenses', JSON.stringify(expenses));
+                
+                this.hideModal('addExpenseModal');
+                this.loadDashboard();
+                this.showNotification('Expense added successfully!', 'success');
+            }
+
+            async handleAddTask(e) {
+                e.preventDefault();
+                
+                const task = {
+                    id: 'TASK-' + Date.now(),
+                    farmerId: document.getElementById('taskFarmer').value,
+                    date: document.getElementById('taskDate').value,
+                    description: document.getElementById('taskDescription').value,
+                    hours: parseFloat(document.getElementById('taskHours').value),
+                    rate: parseFloat(document.getElementById('taskRate').value),
+                    payment: parseFloat(document.getElementById('taskPayment').value),
+                    status: document.getElementById('taskStatus').value,
+                    createdBy: this.currentUser.id,
+                    createdAt: new Date().toISOString()
+                };
+                
+                const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                tasks.push(task);
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                
+                this.hideModal('addTaskModal');
+                this.loadDashboard();
+                this.showNotification('Task added successfully!', 'success');
             }
 
             async handleAddFarm(e) {
@@ -2096,29 +2637,13 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                     createdAt: new Date().toISOString()
                 };
                 
-                try {
-                    const response = await this.apiRequest('/farms', 'POST', farm);
-                    
-                    if (response.success) {
-                        const farms = JSON.parse(localStorage.getItem('farms')) || [];
-                        farms.push(farm);
-                        localStorage.setItem('farms', JSON.stringify(farms));
-                        
-                        this.hideModal('addFarmModal');
-                        this.loadDashboard();
-                        this.showNotification('Farm added successfully!', 'success');
-                    }
-                } catch (error) {
-                    console.error('Error adding farm:', error);
-                    // Fallback to localStorage
-                    const farms = JSON.parse(localStorage.getItem('farms')) || [];
-                    farms.push(farm);
-                    localStorage.setItem('farms', JSON.stringify(farms));
-                    
-                    this.hideModal('addFarmModal');
-                    this.loadDashboard();
-                    this.showNotification('Farm added successfully!', 'success');
-                }
+                const farms = JSON.parse(localStorage.getItem('farms')) || [];
+                farms.push(farm);
+                localStorage.setItem('farms', JSON.stringify(farms));
+                
+                this.hideModal('addFarmModal');
+                this.loadDashboard();
+                this.showNotification('Farm added successfully!', 'success');
             }
 
             loadFarmersForReport() {
@@ -2129,9 +2654,48 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 farmers.forEach(farmer => {
                     const option = document.createElement('option');
                     option.value = farmer.id;
-                    option.textContent = `${farmer.firstName} ${farmer.lastName} (${farmer.email})`;
+                    option.textContent = `${farmer.firstName} ${farmer.lastName}`;
                     select.appendChild(option);
                 });
+                
+                document.getElementById('reportDate').value = new Date().toISOString().split('T')[0];
+            }
+
+            loadFarmersForInvoice() {
+                const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
+                const select = document.getElementById('invoiceFarmer');
+                select.innerHTML = '<option value="">Select Farmer</option>';
+                
+                farmers.forEach(farmer => {
+                    const option = document.createElement('option');
+                    option.value = farmer.id;
+                    option.textContent = `${farmer.firstName} ${farmer.lastName}`;
+                    select.appendChild(option);
+                });
+                
+                // Set default dates
+                const today = new Date().toISOString().split('T')[0];
+                const dueDate = new Date();
+                dueDate.setDate(dueDate.getDate() + 30);
+                const dueDateStr = dueDate.toISOString().split('T')[0];
+                
+                document.getElementById('invoiceDate').value = today;
+                document.getElementById('invoiceDueDate').value = dueDateStr;
+            }
+
+            loadFarmersForTask() {
+                const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
+                const select = document.getElementById('taskFarmer');
+                select.innerHTML = '<option value="">Select Farmer</option>';
+                
+                farmers.forEach(farmer => {
+                    const option = document.createElement('option');
+                    option.value = farmer.id;
+                    option.textContent = `${farmer.firstName} ${farmer.lastName}`;
+                    select.appendChild(option);
+                });
+                
+                document.getElementById('taskDate').value = new Date().toISOString().split('T')[0];
             }
 
             loadFarmersForPdfUpload() {
@@ -2142,7 +2706,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 farmers.forEach(farmer => {
                     const option = document.createElement('option');
                     option.value = farmer.id;
-                    option.textContent = `${farmer.firstName} ${farmer.lastName} (${farmer.email})`;
+                    option.textContent = `${farmer.firstName} ${farmer.lastName}`;
                     select.appendChild(option);
                 });
             }
@@ -2163,29 +2727,13 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                     createdAt: new Date().toISOString()
                 };
                 
-                try {
-                    const response = await this.apiRequest('/reports', 'POST', report);
-                    
-                    if (response.success) {
-                        const reports = JSON.parse(localStorage.getItem('reports')) || [];
-                        reports.push(report);
-                        localStorage.setItem('reports', JSON.stringify(reports));
-                        
-                        this.hideModal('createReportModal');
-                        this.loadDashboard();
-                        this.showNotification('Report created successfully!', 'success');
-                    }
-                } catch (error) {
-                    console.error('Error creating report:', error);
-                    // Fallback to localStorage
-                    const reports = JSON.parse(localStorage.getItem('reports')) || [];
-                    reports.push(report);
-                    localStorage.setItem('reports', JSON.stringify(reports));
-                    
-                    this.hideModal('createReportModal');
-                    this.loadDashboard();
-                    this.showNotification('Report created successfully!', 'success');
-                }
+                const reports = JSON.parse(localStorage.getItem('reports')) || [];
+                reports.push(report);
+                localStorage.setItem('reports', JSON.stringify(reports));
+                
+                this.hideModal('createReportModal');
+                this.loadDashboard();
+                this.showNotification('Report created successfully!', 'success');
             }
 
             async handleUploadPdf(e) {
@@ -2242,28 +2790,6 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 reader.readAsDataURL(file);
             }
 
-            loadFarmersForInvoice() {
-                const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
-                const select = document.getElementById('invoiceFarmer');
-                select.innerHTML = '<option value="">Select Farmer</option>';
-                
-                farmers.forEach(farmer => {
-                    const option = document.createElement('option');
-                    option.value = farmer.id;
-                    option.textContent = `${farmer.firstName} ${farmer.lastName} (${farmer.email})`;
-                    select.appendChild(option);
-                });
-                
-                // Set default dates
-                const today = new Date().toISOString().split('T')[0];
-                const dueDate = new Date();
-                dueDate.setDate(dueDate.getDate() + 30);
-                const dueDateStr = dueDate.toISOString().split('T')[0];
-                
-                document.getElementById('invoiceDate').value = today;
-                document.getElementById('invoiceDueDate').value = dueDateStr;
-            }
-
             addInvoiceItem() {
                 const container = document.getElementById('invoiceItems');
                 const newItem = document.createElement('div');
@@ -2278,7 +2804,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                             <input type="number" class="form-control invoice-qty" placeholder="Qty" required>
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control invoice-price" placeholder="Price" step="0.01" required>
+                            <input type="number" class="form-control invoice-price" placeholder="Unit Price (KSH)" step="0.01" required>
                         </div>
                         <div class="form-group">
                             <button type="button" class="btn btn-danger" onclick="this.parentElement.parentElement.parentElement.remove()">
@@ -2322,32 +2848,18 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                     notes: document.getElementById('invoiceNotes').value,
                     createdBy: this.currentUser.id,
                     paid: false,
+                    notified: false,
                     createdAt: new Date().toISOString()
                 };
                 
-                try {
-                    const response = await this.apiRequest('/invoices', 'POST', invoice);
-                    
-                    if (response.success) {
-                        const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
-                        invoices.push(invoice);
-                        localStorage.setItem('invoices', JSON.stringify(invoices));
-                        
-                        this.hideModal('createInvoiceModal');
-                        this.previewInvoice(invoice.id);
-                        this.showNotification('Invoice created successfully!', 'success');
-                    }
-                } catch (error) {
-                    console.error('Error creating invoice:', error);
-                    // Fallback to localStorage
-                    const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
-                    invoices.push(invoice);
-                    localStorage.setItem('invoices', JSON.stringify(invoices));
-                    
-                    this.hideModal('createInvoiceModal');
-                    this.previewInvoice(invoice.id);
-                    this.showNotification('Invoice created successfully!', 'success');
-                }
+                const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+                invoices.push(invoice);
+                localStorage.setItem('invoices', JSON.stringify(invoices));
+                
+                this.hideModal('createInvoiceModal');
+                this.updateInvoiceNotifications();
+                this.previewInvoice(invoice.id);
+                this.showNotification('Invoice created successfully!', 'success');
             }
 
             loadMyPdfs() {
@@ -2506,11 +3018,9 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                     return;
                 }
                 
-                // Create a zip of all PDFs
                 this.showNotification('Preparing PDF bundle for download...', 'info');
                 
                 // For demo purposes, we'll download the first PDF
-                // In a real app, you would use a library like JSZip to bundle multiple files
                 if (farmerPdfs.length > 0) {
                     setTimeout(() => {
                         this.downloadPdf(farmerPdfs[0].id);
@@ -2519,10 +3029,138 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 }
             }
 
+            updateInvoiceNotifications() {
+                const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+                const notificationBadge = document.getElementById('invoiceNotification');
+                
+                if (this.userType === 'farmer') {
+                    const newInvoices = invoices.filter(inv => 
+                        inv.farmerId === this.currentUser.id && 
+                        !inv.paid && 
+                        !inv.notified
+                    );
+                    
+                    if (newInvoices.length > 0) {
+                        notificationBadge.textContent = newInvoices.length;
+                        notificationBadge.style.display = 'flex';
+                    } else {
+                        notificationBadge.style.display = 'none';
+                    }
+                }
+            }
+
+            previewInvoice(invoiceId) {
+                const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+                const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
+                const invoice = invoices.find(i => i.id === invoiceId);
+                const farmer = farmers.find(f => f.id === invoice.farmerId);
+                const total = invoice.items.reduce((sum, item) => sum + (item.quantity * item.price), 0);
+                
+                // Mark as notified
+                invoice.notified = true;
+                localStorage.setItem('invoices', JSON.stringify(invoices));
+                this.updateInvoiceNotifications();
+                
+                let html = `
+                    <div class="invoice">
+                        <div class="invoice-header">
+                            <h2>AARON AGRONOMY SERVICES</h2>
+                        </div>
+                        
+                        <div class="invoice-company">
+                            <h3>INVOICE</h3>
+                            <p>P.O Box 55-90300, Makueni</p>
+                            <p>Email: aaronmuthini0@gmail.com</p>
+                        </div>
+                        
+                        <div class="invoice-details">
+                            <div class="invoice-from">
+                                <h4>From:</h4>
+                                <p>Aaron Agronomy Services</p>
+                                <p>P.O Box 55-90300, Makueni</p>
+                                <p>aaronmuthini0@gmail.com</p>
+                            </div>
+                            
+                            <div class="invoice-to">
+                                <h4>To:</h4>
+                                <p><strong>${farmer ? `${farmer.firstName} ${farmer.lastName}` : 'Farmer'}</strong></p>
+                                <p>${farmer?.email || ''}</p>
+                                <p>${farmer?.phone || ''}</p>
+                                <p>${farmer?.location || ''}</p>
+                            </div>
+                            
+                            <div class="invoice-info">
+                                <p><strong>Date:</strong> ${new Date(invoice.date).toLocaleDateString()}</p>
+                                <p><strong>Invoice No:</strong> ${invoice.id}</p>
+                                <p><strong>Due Date:</strong> ${new Date(invoice.dueDate).toLocaleDateString()}</p>
+                                <span class="badge ${invoice.paid ? 'badge-success' : 'badge-warning'}">
+                                    ${invoice.paid ? 'PAID' : 'PENDING'}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="invoice-items">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price (KSH)</th>
+                                        <th>Subtotal (KSH)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                `;
+                
+                invoice.items.forEach(item => {
+                    const subtotal = item.quantity * item.price;
+                    html += `
+                        <tr>
+                            <td>${item.description}</td>
+                            <td>${item.quantity}</td>
+                            <td>${item.price.toFixed(2)}</td>
+                            <td>${subtotal.toFixed(2)}</td>
+                        </tr>
+                    `;
+                });
+                
+                html += `
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="invoice-total">
+                            <h3>Total Amount: KSH ${total.toFixed(2)}</h3>
+                        </div>
+                        
+                        ${invoice.notes ? `
+                            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                                <h4>Notes:</h4>
+                                <p>${invoice.notes}</p>
+                            </div>
+                        ` : ''}
+                        
+                        <div class="invoice-footer">
+                            <p><strong>Thank you for your business!</strong></p>
+                            <p>If you have any questions kindly contact aaronmuthini0@gmail.com</p>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('invoicePreviewContent').innerHTML = html;
+                this.showModal('invoicePreviewModal');
+                
+                // Setup download and print buttons
+                document.getElementById('downloadInvoiceBtn').onclick = () => this.downloadInvoice(invoiceId);
+                document.getElementById('printInvoiceBtn').onclick = () => {
+                    window.print();
+                };
+            }
+
             viewReport(reportId) {
                 const reports = JSON.parse(localStorage.getItem('reports')) || [];
-                const report = reports.find(r => r.id === reportId);
                 const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
+                const report = reports.find(r => r.id === reportId);
                 const farmer = farmers.find(f => f.id === report.farmerId);
                 
                 if (!report) return;
@@ -2565,6 +3203,387 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 this.showModal('viewReportModal');
             }
 
+            // Chart rendering methods
+            renderSalesExpenseChart(sales, expenses) {
+                const ctx = document.getElementById('profitChart')?.getContext('2d');
+                if (!ctx) return;
+                
+                // Group by month
+                const monthlyData = {};
+                
+                sales.forEach(sale => {
+                    const monthYear = sale.date.slice(0, 7);
+                    if (!monthlyData[monthYear]) {
+                        monthlyData[monthYear] = { sales: 0, expenses: 0 };
+                    }
+                    monthlyData[monthYear].sales += sale.total;
+                });
+                
+                expenses.forEach(expense => {
+                    const monthYear = expense.date.slice(0, 7);
+                    if (!monthlyData[monthYear]) {
+                        monthlyData[monthYear] = { sales: 0, expenses: 0 };
+                    }
+                    monthlyData[monthYear].expenses += expense.amount;
+                });
+                
+                const labels = Object.keys(monthlyData).sort();
+                const salesData = labels.map(label => monthlyData[label].sales);
+                const expenseData = labels.map(label => monthlyData[label].expenses);
+                
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels.map(label => {
+                            const [year, month] = label.split('-');
+                            return new Date(year, month - 1).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                        }),
+                        datasets: [
+                            {
+                                label: 'Sales (KSH)',
+                                data: salesData,
+                                backgroundColor: '#4CAF50',
+                                borderColor: '#4CAF50',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Expenses (KSH)',
+                                data: expenseData,
+                                backgroundColor: '#F44336',
+                                borderColor: '#F44336',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return 'KSH ' + value.toLocaleString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            renderMonthlySalesChart(sales) {
+                const ctx = document.getElementById('salesChart')?.getContext('2d');
+                if (!ctx) return;
+                
+                // Group by month
+                const monthlyData = {};
+                sales.forEach(sale => {
+                    const monthYear = sale.date.slice(0, 7);
+                    if (!monthlyData[monthYear]) {
+                        monthlyData[monthYear] = { sales: 0, count: 0 };
+                    }
+                    monthlyData[monthYear].sales += sale.total;
+                    monthlyData[monthYear].count += 1;
+                });
+                
+                const labels = Object.keys(monthlyData).sort();
+                const salesData = labels.map(label => monthlyData[label].sales);
+                const countData = labels.map(label => monthlyData[label].count);
+                
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels.map(label => {
+                            const [year, month] = label.split('-');
+                            return new Date(year, month - 1).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                        }),
+                        datasets: [
+                            {
+                                label: 'Monthly Sales (KSH)',
+                                data: salesData,
+                                borderColor: '#4CAF50',
+                                backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                                tension: 0.4,
+                                fill: true
+                            },
+                            {
+                                label: 'Number of Sales',
+                                data: countData,
+                                borderColor: '#2196F3',
+                                backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                                tension: 0.4,
+                                fill: true
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        if (index === 0 || index === values.length - 1 || value % Math.round(values[values.length-1]/5) === 0) {
+                                            return value.toLocaleString();
+                                        }
+                                        return '';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            renderAgroChart(sales, tasks) {
+                const ctx = document.getElementById('agroChart')?.getContext('2d');
+                if (!ctx) return;
+                
+                // Group by month
+                const monthlyData = {};
+                
+                sales.forEach(sale => {
+                    const monthYear = sale.date.slice(0, 7);
+                    if (!monthlyData[monthYear]) {
+                        monthlyData[monthYear] = { sales: 0, tasks: 0, profit: 0 };
+                    }
+                    monthlyData[monthYear].sales += sale.total;
+                });
+                
+                tasks.forEach(task => {
+                    const monthYear = task.date.slice(0, 7);
+                    if (!monthlyData[monthYear]) {
+                        monthlyData[monthYear] = { sales: 0, tasks: 0, profit: 0 };
+                    }
+                    monthlyData[monthYear].tasks += task.payment;
+                    monthlyData[monthYear].profit = monthlyData[monthYear].sales - monthlyData[monthYear].tasks;
+                });
+                
+                const labels = Object.keys(monthlyData).sort();
+                const salesData = labels.map(label => monthlyData[label].sales);
+                const taskData = labels.map(label => monthlyData[label].tasks);
+                const profitData = labels.map(label => monthlyData[label].profit);
+                
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels.map(label => {
+                            const [year, month] = label.split('-');
+                            return new Date(year, month - 1).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                        }),
+                        datasets: [
+                            {
+                                label: 'System Sales (KSH)',
+                                data: salesData,
+                                borderColor: '#4CAF50',
+                                backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                                tension: 0.4
+                            },
+                            {
+                                label: 'Task Payments (KSH)',
+                                data: taskData,
+                                borderColor: '#2196F3',
+                                backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                                tension: 0.4
+                            },
+                            {
+                                label: 'System Profit (KSH)',
+                                data: profitData,
+                                borderColor: '#FF9800',
+                                backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                                tension: 0.4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return 'KSH ' + value.toLocaleString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // UI Helper methods
+            showModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'flex';
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            }
+
+            hideModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            }
+
+            showNotification(message, type = 'info') {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.innerHTML = `
+                    <div style="position: fixed; top: 20px; right: 20px; z-index: 9999; 
+                         background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#F44336' : '#2196F3'}; 
+                         color: white; padding: 15px 20px; border-radius: 5px; 
+                         box-shadow: 0 5px 15px rgba(0,0,0,0.2); min-width: 250px; max-width: 300px;">
+                        <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+                        ${message}
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+
+            saveToLocalStorage() {
+                localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+                localStorage.setItem('userType', this.userType);
+            }
+
+            // Render helper methods
+            renderRecentSales(sales) {
+                if (sales.length === 0) {
+                    return '<p>No sales records yet. Add your first sale!</p>';
+                }
+                
+                let html = '';
+                sales.forEach(sale => {
+                    const profit = sale.total - (sale.expenses || 0);
+                    html += `
+                        <div style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 10px;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <strong>${sale.crop}</strong>
+                                <span>KSH ${sale.total.toFixed(2)}</span>
+                            </div>
+                            <div style="font-size: 0.9em; color: #666;">
+                                ${new Date(sale.date).toLocaleDateString()} | 
+                                Profit: <span class="${profit >= 0 ? 'text-success' : 'text-danger'}">KSH ${profit.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                return html;
+            }
+
+            renderFarmsList(farms) {
+                if (farms.length === 0) {
+                    return '<p>No farms added yet. Add your first farm!</p>';
+                }
+                
+                let html = '';
+                farms.forEach(farm => {
+                    html += `
+                        <div style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 10px;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <strong>${farm.name}</strong>
+                                <span class="badge badge-info">${farm.size} acres</span>
+                            </div>
+                            <div style="font-size: 0.9em; color: #666;">
+                                ${farm.location} | ${farm.crops}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                return html;
+            }
+
+            renderFarmersTable(farmers, showOnlyNames = false) {
+                if (farmers.length === 0) {
+                    return '<p>No farmers registered yet.</p>';
+                }
+                
+                if (showOnlyNames) {
+                    let html = '<div style="max-height: 200px; overflow-y: auto;">';
+                    farmers.forEach(farmer => {
+                        html += `
+                            <div style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                                <strong>${farmer.firstName} ${farmer.lastName}</strong>
+                                <span style="color: #666; font-size: 0.9em; margin-left: 10px;">${farmer.location}</span>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    return html;
+                }
+                
+                let html = '<div class="table-responsive"><table class="table"><thead><tr>';
+                html += '<th>Name</th><th>Email</th><th>Phone</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+                
+                farmers.forEach(farmer => {
+                    html += `
+                        <tr>
+                            <td><strong>${farmer.firstName} ${farmer.lastName}</strong></td>
+                            <td>${farmer.email}</td>
+                            <td>${farmer.phone || 'N/A'}</td>
+                            <td>${farmer.location}</td>
+                            <td>
+                                <span class="badge badge-${farmer.status === 'active' ? 'success' : farmer.status === 'pending' ? 'warning' : 'danger'}">
+                                    ${farmer.status || 'active'}
+                                </span>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-info" onclick="system.viewFarmerDetails('${farmer.id}')" title="View Details">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                html += '</tbody></table></div>';
+                return html;
+            }
+
+            toggleFarmersView() {
+                const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
+                const container = document.getElementById('farmersTableContainer');
+                const button = event.target;
+                
+                if (!container || !button) return;
+                
+                const isShowingAll = button.innerHTML.includes('View Less');
+                
+                if (isShowingAll) {
+                    container.innerHTML = this.renderFarmersTable(farmers.slice(0, 3), true);
+                    button.innerHTML = '<i class="fas fa-eye"></i> View More';
+                    button.classList.remove('btn-warning');
+                    button.classList.add('btn-info');
+                } else {
+                    container.innerHTML = this.renderFarmersTable(farmers, false);
+                    button.innerHTML = '<i class="fas fa-eye-slash"></i> View Less';
+                    button.classList.remove('btn-info');
+                    button.classList.add('btn-warning');
+                }
+            }
+
+            // Additional methods
+            deleteSale(saleId) {
+                const sales = JSON.parse(localStorage.getItem('sales')) || [];
+                const filteredSales = sales.filter(s => s.id !== saleId);
+                localStorage.setItem('sales', JSON.stringify(filteredSales));
+                this.loadSales();
+                this.showNotification('Sale record deleted!', 'success');
+            }
+
             viewFarmerDetails(farmerId) {
                 const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
                 const sales = JSON.parse(localStorage.getItem('sales')) || [];
@@ -2579,7 +3598,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 const farmerReports = reports.filter(r => r.farmerId === farmerId);
                 
                 const totalSales = farmerSales.reduce((sum, sale) => sum + sale.total, 0);
-                const totalProfit = farmerSales.reduce((sum, sale) => sum + (sale.total - sale.expenses), 0);
+                const totalProfit = farmerSales.reduce((sum, sale) => sum + (sale.total - (sale.expenses || 0)), 0);
                 
                 let html = `
                     <div class="invoice">
@@ -2605,11 +3624,11 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                         
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0;">
                             <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center;">
-                                <h5 style="color: var(--success); margin-bottom: 5px;">$${totalSales.toFixed(2)}</h5>
+                                <h5 style="color: var(--success); margin-bottom: 5px;">KSH ${totalSales.toLocaleString()}</h5>
                                 <small>Total Sales</small>
                             </div>
                             <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center;">
-                                <h5 style="color: var(--primary); margin-bottom: 5px;">$${totalProfit.toFixed(2)}</h5>
+                                <h5 style="color: var(--primary); margin-bottom: 5px;">KSH ${totalProfit.toLocaleString()}</h5>
                                 <small>Total Profit</small>
                             </div>
                             <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center;">
@@ -2630,26 +3649,9 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                                 '<p>No farms registered yet.</p>'
                             }
                         </div>
-                        
-                        <div style="margin: 20px 0;">
-                            <h4>Recent Reports</h4>
-                            ${farmerReports.length > 0 ? 
-                                farmerReports.slice(-3).reverse().map(report => `
-                                    <div style="background: #f5f5f5; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
-                                        <strong>${report.title}</strong>
-                                        <span class="badge badge-${report.status === 'approved' ? 'success' : report.status === 'pending' ? 'warning' : 'danger'}" style="float: right;">
-                                            ${report.status}
-                                        </span><br>
-                                        <small>${report.type.replace('_', ' ')} - ${new Date(report.date).toLocaleDateString()}</small>
-                                    </div>
-                                `).join('') : 
-                                '<p>No reports available.</p>'
-                            }
-                        </div>
                     </div>
                 `;
                 
-                // Create a modal for farmer details
                 const modal = document.createElement('div');
                 modal.className = 'modal';
                 modal.style.display = 'flex';
@@ -2668,80 +3670,37 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 document.body.appendChild(modal);
             }
 
-            previewInvoice(invoiceId) {
+            editReportStatus(reportId) {
+                const reports = JSON.parse(localStorage.getItem('reports')) || [];
+                const report = reports.find(r => r.id === reportId);
+                
+                if (!report) return;
+                
+                const newStatus = prompt('Update report status (pending/approved/requires_action):', report.status || 'pending');
+                
+                if (newStatus && ['pending', 'approved', 'requires_action'].includes(newStatus.toLowerCase())) {
+                    report.status = newStatus.toLowerCase();
+                    localStorage.setItem('reports', JSON.stringify(reports));
+                    this.loadReports();
+                    this.showNotification('Report status updated!', 'success');
+                }
+            }
+
+            editInvoice(invoiceId) {
                 const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
                 const invoice = invoices.find(i => i.id === invoiceId);
-                const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
-                const farmer = farmers.find(f => f.id === invoice.farmerId);
-                const total = invoice.items.reduce((sum, item) => sum + (item.quantity * item.price), 0);
                 
-                let html = `
-                    <div class="invoice">
-                        <div class="invoice-header">
-                            <div>
-                                <h2>Invoice #${invoice.id}</h2>
-                                <p><strong>To:</strong> ${farmer ? `${farmer.firstName} ${farmer.lastName}` : 'Unknown'}</p>
-                                <p>${farmer?.email || ''}</p>
-                                <p>${farmer?.phone || ''}</p>
-                                <p>${farmer?.location || ''}</p>
-                            </div>
-                            <div style="text-align: right;">
-                                <p><strong>Date:</strong> ${new Date(invoice.date).toLocaleDateString()}</p>
-                                <p><strong>Due Date:</strong> ${new Date(invoice.dueDate).toLocaleDateString()}</p>
-                                <span class="badge ${invoice.paid ? 'badge-success' : 'badge-warning'}">
-                                    ${invoice.paid ? 'PAID' : 'PENDING'}
-                                </span>
-                            </div>
-                        </div>
-                        
-                        <div class="invoice-items">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Description</th>
-                                        <th>Quantity</th>
-                                        <th>Price</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                `;
+                if (!invoice) return;
                 
-                invoice.items.forEach(item => {
-                    html += `
-                        <tr>
-                            <td>${item.description}</td>
-                            <td>${item.quantity}</td>
-                            <td>$${item.price.toFixed(2)}</td>
-                            <td>$${(item.quantity * item.price).toFixed(2)}</td>
-                        </tr>
-                    `;
-                });
+                const paid = confirm('Mark this invoice as paid?');
                 
-                html += `
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="invoice-total">
-                            <h3>Total: $${total.toFixed(2)}</h3>
-                        </div>
-                        
-                        ${invoice.notes ? `
-                            <div style="margin-top: 30px;">
-                                <h4>Notes</h4>
-                                <p>${invoice.notes}</p>
-                            </div>
-                        ` : ''}
-                    </div>
-                `;
-                
-                document.getElementById('invoicePreviewContent').innerHTML = html;
-                this.showModal('invoicePreviewModal');
-                
-                // Setup download and print buttons
-                document.getElementById('downloadInvoiceBtn').onclick = () => this.downloadInvoice(invoiceId);
-                document.getElementById('printInvoiceBtn').onclick = () => window.print();
+                if (paid !== null) {
+                    invoice.paid = paid;
+                    localStorage.setItem('invoices', JSON.stringify(invoices));
+                    this.updateInvoiceNotifications();
+                    this.loadInvoices();
+                    this.showNotification('Invoice updated!', 'success');
+                }
             }
 
             // Download methods
@@ -2750,8 +3709,8 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 let csv = 'Date,Crop,Quantity (kg),Price/Kg,Total Sales,Expenses,Profit,Notes\n';
                 
                 sales.forEach(sale => {
-                    const profit = sale.total - sale.expenses;
-                    csv += `${sale.date},${sale.crop},${sale.quantity},${sale.pricePerKg},${sale.total},${sale.expenses},${profit},"${sale.notes}"\n`;
+                    const profit = sale.total - (sale.expenses || 0);
+                    csv += `${sale.date},${sale.crop},${sale.quantity},${sale.pricePerKg},${sale.total},${sale.expenses || 0},${profit},"${sale.notes}"\n`;
                 });
                 
                 const blob = new Blob([csv], { type: 'text/csv' });
@@ -2791,7 +3750,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 
                 invoices.forEach(invoice => {
                     const total = invoice.items.reduce((sum, item) => sum + (item.quantity * item.price), 0);
-                    const itemsStr = invoice.items.map(item => `${item.description} (${item.quantity} x $${item.price})`).join('; ');
+                    const itemsStr = invoice.items.map(item => `${item.description} (${item.quantity} x KSH ${item.price})`).join('; ');
                     csv += `${invoice.id},${invoice.farmerId},${invoice.date},${invoice.dueDate},${total},${invoice.paid ? 'Paid' : 'Pending'},"${itemsStr}"\n`;
                 });
                 
@@ -2850,11 +3809,11 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 `;
                 
                 invoice.items.forEach(item => {
-                    content += `${item.description} - ${item.quantity} x $${item.price} = $${(item.quantity * item.price).toFixed(2)}\n`;
+                    content += `${item.description} - ${item.quantity} x KSH ${item.price} = KSH ${(item.quantity * item.price).toFixed(2)}\n`;
                 });
                 
                 const total = invoice.items.reduce((sum, item) => sum + (item.quantity * item.price), 0);
-                content += `\nTOTAL: $${total.toFixed(2)}`;
+                content += `\nTOTAL: KSH ${total.toFixed(2)}`;
                 
                 if (invoice.notes) {
                     content += `\n\nNOTES:\n${invoice.notes}`;
@@ -2869,419 +3828,26 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 
                 this.showNotification('Invoice downloaded!', 'success');
             }
-
-            // Chart rendering methods
-            renderProfitChart(sales) {
-                const ctx = document.getElementById('profitChart')?.getContext('2d');
-                if (!ctx) return;
-                
-                // Group by month
-                const monthlyData = {};
-                sales.forEach(sale => {
-                    const date = new Date(sale.date);
-                    const monthYear = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}`;
-                    
-                    if (!monthlyData[monthYear]) {
-                        monthlyData[monthYear] = { sales: 0, profit: 0 };
-                    }
-                    
-                    monthlyData[monthYear].sales += sale.total;
-                    monthlyData[monthYear].profit += (sale.total - sale.expenses);
-                });
-                
-                const labels = Object.keys(monthlyData).sort();
-                const salesData = labels.map(label => monthlyData[label].sales);
-                const profitData = labels.map(label => monthlyData[label].profit);
-                
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: labels,
-                        datasets: [
-                            {
-                                label: 'Sales',
-                                data: salesData,
-                                borderColor: '#4CAF50',
-                                backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                                tension: 0.4
-                            },
-                            {
-                                label: 'Profit',
-                                data: profitData,
-                                borderColor: '#2196F3',
-                                backgroundColor: 'rgba(33, 150, 243, 0.1)',
-                                tension: 0.4
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: function(value) {
-                                        return '$' + value;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            renderSalesChart(sales) {
-                const ctx = document.getElementById('salesChart')?.getContext('2d');
-                if (!ctx) return;
-                
-                // Sort by date and take last 30 days
-                const sortedSales = [...sales].sort((a, b) => new Date(a.date) - new Date(b.date));
-                const recentSales = sortedSales.slice(-30);
-                
-                const labels = recentSales.map(s => new Date(s.date).toLocaleDateString());
-                const salesData = recentSales.map(s => s.total);
-                const profitData = recentSales.map(s => s.total - s.expenses);
-                
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [
-                            {
-                                label: 'Sales',
-                                data: salesData,
-                                backgroundColor: 'rgba(76, 175, 80, 0.7)',
-                                borderColor: '#4CAF50',
-                                borderWidth: 1
-                            },
-                            {
-                                label: 'Profit',
-                                data: profitData,
-                                backgroundColor: 'rgba(33, 150, 243, 0.7)',
-                                borderColor: '#2196F3',
-                                borderWidth: 1
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: function(value) {
-                                        return '$' + value;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            renderAgroSalesChart(sales) {
-                const ctx = document.getElementById('agroSalesChart')?.getContext('2d');
-                if (!ctx) return;
-                
-                // Group by crop
-                const cropData = {};
-                sales.forEach(sale => {
-                    if (!cropData[sale.crop]) {
-                        cropData[sale.crop] = { sales: 0, profit: 0 };
-                    }
-                    
-                    cropData[sale.crop].sales += sale.total;
-                    cropData[sale.crop].profit += (sale.total - sale.expenses);
-                });
-                
-                const labels = Object.keys(cropData);
-                const salesData = labels.map(crop => cropData[crop].sales);
-                const profitData = labels.map(crop => cropData[crop].profit);
-                
-                new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            data: salesData,
-                            backgroundColor: [
-                                '#4CAF50',
-                                '#2196F3',
-                                '#FF9800',
-                                '#9C27B0',
-                                '#009688',
-                                '#795548'
-                            ]
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom'
-                            }
-                        }
-                    }
-                });
-            }
-
-            // UI Helper methods
-            showModal(modalId) {
-                document.getElementById(modalId).style.display = 'flex';
-            }
-
-            hideModal(modalId) {
-                document.getElementById(modalId).style.display = 'none';
-            }
-
-            showNotification(message, type = 'info') {
-                // Create notification element
-                const notification = document.createElement('div');
-                notification.className = `notification ${type}`;
-                notification.innerHTML = `
-                    <div style="position: fixed; top: 20px; right: 20px; z-index: 9999; 
-                         background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#F44336' : '#2196F3'}; 
-                         color: white; padding: 15px 20px; border-radius: 5px; 
-                         box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-                        <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
-                        ${message}
-                    </div>
-                `;
-                
-                document.body.appendChild(notification);
-                
-                // Remove after 3 seconds
-                setTimeout(() => {
-                    notification.remove();
-                }, 3000);
-            }
-
-            saveToLocalStorage() {
-                localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-                localStorage.setItem('userType', this.userType);
-            }
-
-            async apiRequest(endpoint, method = 'GET', data = null) {
-                const url = this.backendUrl + endpoint;
-                const options = {
-                    method,
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                };
-                
-                if (data) {
-                    options.body = JSON.stringify(data);
-                }
-                
-                const response = await fetch(url, options);
-                return await response.json();
-            }
-
-            // Render helper methods
-            renderRecentSales(sales) {
-                if (sales.length === 0) {
-                    return '<p>No sales records yet. Add your first sale!</p>';
-                }
-                
-                let html = '';
-                sales.forEach(sale => {
-                    const profit = sale.total - sale.expenses;
-                    html += `
-                        <div style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 10px;">
-                            <div style="display: flex; justify-content: space-between;">
-                                <strong>${sale.crop}</strong>
-                                <span>$${sale.total.toFixed(2)}</span>
-                            </div>
-                            <div style="font-size: 0.9em; color: #666;">
-                                ${new Date(sale.date).toLocaleDateString()} | 
-                                Profit: <span class="${profit >= 0 ? 'text-success' : 'text-danger'}">$${profit.toFixed(2)}</span>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                return html;
-            }
-
-            renderFarmsList(farms) {
-                if (farms.length === 0) {
-                    return '<p>No farms added yet. Add your first farm!</p>';
-                }
-                
-                let html = '';
-                farms.forEach(farm => {
-                    html += `
-                        <div style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 10px;">
-                            <div style="display: flex; justify-content: space-between;">
-                                <strong>${farm.name}</strong>
-                                <span class="badge badge-info">${farm.size} acres</span>
-                            </div>
-                            <div style="font-size: 0.9em; color: #666;">
-                                ${farm.location} | ${farm.crops}
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                return html;
-            }
-
-            renderRecentReports(reports) {
-                if (reports.length === 0) {
-                    return '<p>No reports yet. Reports will appear here from your agronomist.</p>';
-                }
-                
-                let html = '';
-                reports.forEach(report => {
-                    html += `
-                        <div style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 10px;">
-                            <div style="display: flex; justify-content: space-between;">
-                                <strong>${report.title}</strong>
-                                <span class="badge badge-${report.status === 'approved' ? 'success' : report.status === 'pending' ? 'warning' : 'danger'}">
-                                    ${report.status}
-                                </span>
-                            </div>
-                            <div style="font-size: 0.9em; color: #666;">
-                                ${new Date(report.date).toLocaleDateString()} | ${report.type.replace('_', ' ')}
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                return html;
-            }
-
-            renderFarmersTable(farmers, showOnlyNames = false) {
-                if (farmers.length === 0) {
-                    return '<p>No farmers registered yet.</p>';
-                }
-                
-                if (showOnlyNames) {
-                    // Show only names in a simple list
-                    let html = '<div style="max-height: 200px; overflow-y: auto;">';
-                    farmers.forEach(farmer => {
-                        html += `
-                            <div style="padding: 8px 0; border-bottom: 1px solid #eee;">
-                                <strong>${farmer.firstName} ${farmer.lastName}</strong>
-                                <span style="color: #666; font-size: 0.9em; margin-left: 10px;">${farmer.location}</span>
-                            </div>
-                        `;
-                    });
-                    html += '</div>';
-                    return html;
-                }
-                
-                // Show full table with all details
-                let html = '<div class="table-responsive"><table class="table"><thead><tr>';
-                html += '<th>Name</th><th>Email</th><th>Phone</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
-                
-                farmers.forEach(farmer => {
-                    html += `
-                        <tr>
-                            <td><strong>${farmer.firstName} ${farmer.lastName}</strong></td>
-                            <td>${farmer.email}</td>
-                            <td>${farmer.phone || 'N/A'}</td>
-                            <td>${farmer.location}</td>
-                            <td>
-                                <span class="badge badge-${farmer.status === 'active' ? 'success' : farmer.status === 'pending' ? 'warning' : 'danger'}">
-                                    ${farmer.status || 'active'}
-                                </span>
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-info" onclick="system.viewFarmerDetails('${farmer.id}')" title="View Details">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn btn-sm btn-warning" onclick="system.editFarmerStatus('${farmer.id}')" title="Edit Status">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                
-                html += '</tbody></table></div>';
-                return html;
-            }
-
-            // Additional methods
-            deleteSale(saleId) {
-                const sales = JSON.parse(localStorage.getItem('sales')) || [];
-                const filteredSales = sales.filter(s => s.id !== saleId);
-                localStorage.setItem('sales', JSON.stringify(filteredSales));
-                this.loadSales();
-                this.showNotification('Sale record deleted!', 'success');
-            }
-
-            editFarmerStatus(farmerId) {
-                const farmers = JSON.parse(localStorage.getItem('farmers')) || [];
-                const farmer = farmers.find(f => f.id === farmerId);
-                
-                if (!farmer) return;
-                
-                const newStatus = prompt('Update farmer status (active/pending/inactive):', farmer.status || 'active');
-                
-                if (newStatus && ['active', 'pending', 'inactive'].includes(newStatus.toLowerCase())) {
-                    farmer.status = newStatus.toLowerCase();
-                    localStorage.setItem('farmers', JSON.stringify(farmers));
-                    this.loadDashboard();
-                    this.showNotification('Farmer status updated!', 'success');
-                }
-            }
-
-            editReportStatus(reportId) {
-                const reports = JSON.parse(localStorage.getItem('reports')) || [];
-                const report = reports.find(r => r.id === reportId);
-                
-                if (!report) return;
-                
-                const newStatus = prompt('Update report status (pending/approved/requires_action):', report.status || 'pending');
-                
-                if (newStatus && ['pending', 'approved', 'requires_action'].includes(newStatus.toLowerCase())) {
-                    report.status = newStatus.toLowerCase();
-                    localStorage.setItem('reports', JSON.stringify(reports));
-                    this.loadReports();
-                    this.showNotification('Report status updated!', 'success');
-                }
-            }
-
-            editInvoice(invoiceId) {
-                const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
-                const invoice = invoices.find(i => i.id === invoiceId);
-                
-                if (!invoice) return;
-                
-                const paid = confirm('Mark this invoice as paid?');
-                
-                if (paid !== null) {
-                    invoice.paid = paid;
-                    localStorage.setItem('invoices', JSON.stringify(invoices));
-                    this.loadInvoices();
-                    this.showNotification('Invoice updated!', 'success');
-                }
-            }
         }
 
         // Initialize the system
         const system = new AgronomySystem();
-        window.system = system; // Make it globally available for onclick handlers
+        window.system = system;
 
-        // Set default date for sale form
+        // Set default dates
         document.addEventListener('DOMContentLoaded', () => {
             const today = new Date().toISOString().split('T')[0];
-            const dateInput = document.getElementById('saleDate');
-            if (dateInput) {
-                dateInput.value = today;
-                dateInput.max = today;
-            }
             
-            const reportDate = document.getElementById('reportDate');
-            if (reportDate) {
-                reportDate.value = today;
-            }
+            // Set dates for various forms
+            ['saleDate', 'expenseDate', 'taskDate', 'reportDate'].forEach(id => {
+                const input = document.getElementById(id);
+                if (input) {
+                    input.value = today;
+                    if (id === 'saleDate') {
+                        input.max = today;
+                    }
+                }
+            });
         });
 
         // Close modals when clicking outside
@@ -3290,7 +3856,14 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 e.target.style.display = 'none';
             }
         });
+
+        // Handle window resize for responsive design
+        window.addEventListener('resize', () => {
+            const navLinks = document.getElementById('navLinks');
+            if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
-
