@@ -814,6 +814,11 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                         <label for="saleCrop">Crop Type</label>
                         <select id="saleCrop" class="form-control" required>
                             <option value="">Select Crop</option>
+                            <option value="pixie">Pixie</option>
+                            <option value="mango">Mango</option>
+                            <option value="Avocado">Avocado</option>
+                            <option value="Lemon">Lemon</option>
+                            <option value="Pawpaw">Pawpaw</option>
                             <option value="maize">Maize</option>
                             <option value="wheat">Wheat</option>
                             <option value="coffee">Coffee</option>
@@ -829,23 +834,23 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                             <input type="number" id="saleQuantity" class="form-control" step="0.01" required>
                         </div>
                         <div class="form-group">
-                            <label for="salePrice">Price per Kg ($)</label>
+                            <label for="salePrice">Price per Kg (KSH)</label>
                             <input type="number" id="salePrice" class="form-control" step="0.01" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="saleTotal">Total Sales ($)</label>
+                        <label for="saleTotal">Total Sales (KSH)</label>
                         <input type="number" id="saleTotal" class="form-control" step="0.01" readonly>
                     </div>
                     
                     <div class="form-group">
-                        <label for="saleExpenses">Expenses ($)</label>
+                        <label for="saleExpenses">Expenses (KSH)</label>
                         <input type="number" id="saleExpenses" class="form-control" step="0.01" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="saleProfit">Profit ($)</label>
+                        <label for="saleProfit">Profit (KSH)</label>
                         <input type="number" id="saleProfit" class="form-control" step="0.01" readonly>
                     </div>
                     
@@ -1014,7 +1019,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                                     <input type="number" class="form-control invoice-qty" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Price ($)</label>
+                                    <label>Price (KSH)</label>
                                     <input type="number" class="form-control invoice-price" step="0.01" required>
                                 </div>
                             </div>
@@ -3288,3 +3293,4 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     </script>
 </body>
 </html>
+
