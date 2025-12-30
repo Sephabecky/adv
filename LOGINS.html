@@ -106,14 +106,18 @@
             color: white;
         }
 
-        .system-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--secondary);
-            text-align: center;
-            flex: 1;
-            margin: 0 15px;
-        }
+       .system-title {
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    font-weight: bold;
+    color: var(--secondary);
+    text-align: left;
+    flex: 1;
+    margin: 0 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0; /* Allows text truncation */
+}
 
         .nav-links {
             display: flex;
@@ -3862,4 +3866,5 @@
     </script>
 </body>
 </html>
+
 
