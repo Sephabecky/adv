@@ -6,82 +6,372 @@
     <title>Drip Irrigation Installation | Aaron Agronomy Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-
     <style>
-              table {
+        :root {
+            --primary-green: #1a472a;
+            --light-green: #e8f3ec;
+            --hover-green: #145c35;
+            --white: #ffffff;
+            --gray-light: #f6f9f7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
             width: 100%;
-            border-collapse: collapse;
-            background: #ffffff;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+    background-color: var(--primary-green);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-green);
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo span {
+            color: #2e7d32;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(26, 71, 42, 0.85), rgba(26, 71, 42, 0.95)), url('BCKG.webp');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--primary-green);
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-green);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #555;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Packages Container */
+        .packages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .package-card {
+            background: var(--white);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid #e0e0e0;
         }
-
-        table thead {
-            background: #1a472a;
-            color: #ffffff;
+        
+        .package-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: var(--primary-green);
         }
-
-        table th, table td {
-            padding: 16px;
+        
+        .package-header {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 25px 20px;
             text-align: center;
         }
-
-        table td:first-child {
-            font-weight: bold;
-            text-align: left;
+        
+        .package-size {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
-
-        table tbody tr:nth-child(even) {
-            background: #f6f9f7;
+        
+        .package-area {
+            font-size: 0.95rem;
+            opacity: 0.9;
         }
-
-        table tbody tr:hover {
-            background: #e8f3ec;
-            transform: scale(1.01);
-            transition: 0.3s ease;
+        
+        .package-body {
+            padding: 25px 20px;
         }
-
+        
+        .price-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .price-option:last-child {
+            border-bottom: none;
+        }
+        
+        .lines-count {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        
+        .price {
+            background: var(--light-green);
+            color: var(--primary-green);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .package-card:hover .price {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+        
+        .price-option:hover .price {
+            transform: scale(1.05);
+        }
+        
+        .package-features {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .package-features ul {
+            list-style-type: none;
+        }
+        
+        .package-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .package-features i {
+            color: var(--primary-green);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .package-footer {
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
+        
         .btn {
             display: inline-block;
-            margin-top: 40px;
-            background: #1a472a;
-            color: #ffffff;
+            background: var(--primary-green);
+            color: var(--white);
             padding: 14px 35px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             transition: 0.3s ease;
+            border: 2px solid var(--primary-green);
+            font-size: 1rem;
         }
-
+        
         .btn:hover {
-            background: #145c35;
+            background: var(--hover-green);
+            border-color: var(--hover-green);
         }
-
-        footer {
-            background: #1a472a;
-            color: #ffffff;
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-green);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+        
+        .cta-section {
             text-align: center;
-            padding: 20px 0;
-            margin-top: 50px;
+            padding: 50px 0;
+            background: linear-gradient(to right, #f8fff9, #f0f9f3);
+            border-radius: 15px;
+            margin: 60px 0;
         }
-
+        
+        .cta-title {
+            color: var(--primary-green);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-text {
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            background: var(--primary-green);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 70px;
+        }
+        
+        footer p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .packages-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 28px;
+                font-size: 2.2rem;
             }
-
-            table th, table td {
-                padding: 12px;
-                font-size: 14px;
+            
+            .packages-container {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .package-header {
+                padding: 20px 15px;
+            }
+            
+            .package-size {
+                font-size: 1.6rem;
             }
         }
-    
-
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+            }
+        }
+        
+        /* Animation for price highlighting */
+        @keyframes priceHighlight {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .price.highlight {
+            animation: priceHighlight 1s ease;
+        }
+        
+        /* Ribbon for best value */
+        .best-value {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #ff9800;
+            color: white;
+            padding: 8px 40px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
     </style>
-    </head>
+</head>
 <body>
- <header>
+    <header>
         <div class="container header-container">
             <a href="index.html" class="logo">
                 <div class="logo-img">
@@ -92,84 +382,205 @@
                 </div>
                 <div class="logo-text">Aaron <span>Agronomy Services</span></div>
             </a>
-            
-        
-</div>
-</header>
-<section class="hero" style="
-
-     background: linear-gradient(rgba(26, 71, 42, 0.8), rgba(26, 71, 42, 0.9)), url('BCKG.webp');
-     background-size: cover;
-    background-position: center;
-     color:white;
-    padding:70px 0;
-    text-align:center;">
-    <div class="container">
-        <h1>Drip Irrigation Installation</h1>
-        <p>Efficient • Sustainable • Modern Farming Solutions</p>
-    </div>
-</section>
-
-<section class="container" style="padding:70px 0;">
-    <div style="max-width:900px; margin:auto;">
-
+        </div>
+    </header>
     
-    <h1><b>DRIP IRRIGATION PACKAGES</b></h1>
-        <p style="text-align:center; margin-bottom:30px;">
-            Prices are classified based on acreage and number of lines per bed.
+    <section class="hero">
+        <div class="container">
+            <h1>Drip Irrigation Installation</h1>
+            <p>Efficient • Sustainable • Modern Farming Solutions</p>
+        </div>
+    </section>
+    
+    <main class="container">
+        <h2 class="section-title">DRIP IRRIGATION PACKAGES</h2>
+        <p class="section-subtitle">
+            Choose the perfect irrigation solution for your farm. Prices are classified based on acreage and number of lines per bed. All packages include professional installation and a 1-year service warranty.
         </p>
-
-        <div style="overflow-x:auto;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Size / Lines Per Bed</th>
-                        <th>1 Line</th>
-                        <th>2 Lines</th>
-                        <th>3 Lines</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1 Acre (4100 sqm)</td>
-                        <td>KES 65,000</td>
-                        <td>KES 95,000</td>
-                        <td>KES 130,000</td>
-                    </tr>
-                    <tr>
-                        <td>½ Acre (2000 sqm)</td>
-                        <td>KES 30,000</td>
-                        <td>KES 45,000</td>
-                        <td>KES 60,000</td>
-                    </tr>
-                    <tr>
-                        <td>¼ Acre (1000 sqm)</td>
-                        <td>KES 16,000</td>
-                        <td>KES 25,000</td>
-                        <td>KES 35,000</td>
-                    </tr>
-                    <tr>
-                        <td>⅛ Acre (500 sqm)</td>
-                        <td>KES 10,000</td>
-                        <td>KES 15,000</td>
-                        <td>KES 20,000</td>
-                    </tr>
-                </tbody>
-            </table>
+        
+        <div class="packages-container">
+            <!-- 1 Acre Package -->
+            <div class="package-card">
+                <div class="package-header">
+                    <div class="package-size">1 Acre</div>
+                    <div class="package-area">(4100 sqm)</div>
+                </div>
+                <div class="package-body">
+                    <div class="price-option">
+                        <div class="lines-count">1 Line Per Bed</div>
+                        <div class="price">KES 65,000</div>
+                    </div>
+                    <div class="price-option">
+                        <div class="lines-count">2 Lines Per Bed</div>
+                        <div class="price">KES 95,000</div>
+                    </div>
+                    <div class="price-option">
+                        <div class="lines-count">3 Lines Per Bed</div>
+                        <div class="price">KES 130,000</div>
+                    </div>
+                    
+                    <div class="package-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Professional installation</li>
+                            <li><i class="fas fa-check-circle"></i> 1-year warranty</li>
+                            <li><i class="fas fa-check-circle"></i> Free maintenance training</li>
+                            <li><i class="fas fa-check-circle"></i> Water efficiency up to 90%</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="package-footer">
+                    <a href="contact.html" class="btn btn-outline">Select Package</a>
+                </div>
+            </div>
+            
+            <!-- 1/2 Acre Package -->
+            <div class="package-card">
+                <div class="best-value">BEST VALUE</div>
+                <div class="package-header">
+                    <div class="package-size">½ Acre</div>
+                    <div class="package-area">(2000 sqm)</div>
+                </div>
+                <div class="package-body">
+                    <div class="price-option">
+                        <div class="lines-count">1 Line Per Bed</div>
+                        <div class="price">KES 30,000</div>
+                    </div>
+                    <div class="price-option">
+                        <div class="lines-count">2 Lines Per Bed</div>
+                        <div class="price">KES 45,000</div>
+                    </div>
+                    <div class="price-option">
+                        <div class="lines-count">3 Lines Per Bed</div>
+                        <div class="price">KES 60,000</div>
+                    </div>
+                    
+                    <div class="package-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Professional installation</li>
+                            <li><i class="fas fa-check-circle"></i> 1-year warranty</li>
+                            <li><i class="fas fa-check-circle"></i> Free maintenance training</li>
+                            <li><i class="fas fa-check-circle"></i> Water efficiency up to 90%</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="package-footer">
+                    <a href="contact.html" class="btn">Select Package</a>
+                </div>
+            </div>
+            
+            <!-- 1/4 Acre Package -->
+            <div class="package-card">
+                <div class="package-header">
+                    <div class="package-size">¼ Acre</div>
+                    <div class="package-area">(1000 sqm)</div>
+                </div>
+                <div class="package-body">
+                    <div class="price-option">
+                        <div class="lines-count">1 Line Per Bed</div>
+                        <div class="price">KES 16,000</div>
+                    </div>
+                    <div class="price-option">
+                        <div class="lines-count">2 Lines Per Bed</div>
+                        <div class="price">KES 25,000</div>
+                    </div>
+                    <div class="price-option">
+                        <div class="lines-count">3 Lines Per Bed</div>
+                        <div class="price">KES 35,000</div>
+                    </div>
+                    
+                    <div class="package-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Professional installation</li>
+                            <li><i class="fas fa-check-circle"></i> 1-year warranty</li>
+                            <li><i class="fas fa-check-circle"></i> Free maintenance training</li>
+                            <li><i class="fas fa-check-circle"></i> Water efficiency up to 90%</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="package-footer">
+                    <a href="contact.html" class="btn btn-outline">Select Package</a>
+                </div>
+            </div>
+            
+            <!-- 1/8 Acre Package -->
+            <div class="package-card">
+                <div class="package-header">
+                    <div class="package-size">⅛ Acre</div>
+                    <div class="package-area">(500 sqm)</div>
+                </div>
+                <div class="package-body">
+                    <div class="price-option">
+                        <div class="lines-count">1 Line Per Bed</div>
+                        <div class="price">KES 10,000</div>
+                    </div>
+                    <div class="price-option">
+                        <div class="lines-count">2 Lines Per Bed</div>
+                        <div class="price">KES 15,000</div>
+                    </div>
+                    <div class="price-option">
+                        <div class="lines-count">3 Lines Per Bed</div>
+                        <div class="price">KES 20,000</div>
+                    </div>
+                    
+                    <div class="package-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Professional installation</li>
+                            <li><i class="fas fa-check-circle"></i> 1-year warranty</li>
+                            <li><i class="fas fa-check-circle"></i> Free maintenance training</li>
+                            <li><i class="fas fa-check-circle"></i> Water efficiency up to 90%</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="package-footer">
+                    <a href="contact.html" class="btn btn-outline">Select Package</a>
+                </div>
+            </div>
         </div>
-
-        <div style="text-align:center;">
-            <a href="contact.html" class="btn">Request Quotation</a>
+        
+        <div class="cta-section">
+            <h3 class="cta-title">Need a Custom Solution?</h3>
+            <p class="cta-text">
+                Our team can design a custom drip irrigation system tailored to your specific crop needs, terrain, and budget. Contact us for a free consultation and site assessment.
+            </p>
+            <a href="contact.html" class="btn">Request Custom Quotation</a>
         </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aaron Agronomy Services. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Efficient irrigation solutions for sustainable farming</p>
+        </div>
+    </footer>
 
-    </div>
-</section>
-
-<footer>
-    <div class="container" style="text-align:center;">
-        &copy; 2025 Aaron Agronomy Services. All rights reserved.
-    </div>
-</footer>
-
+    <script>
+        // Add hover effect to price options
+        document.addEventListener('DOMContentLoaded', function() {
+            const priceOptions = document.querySelectorAll('.price-option');
+            
+            priceOptions.forEach(option => {
+                option.addEventListener('mouseenter', function() {
+                    const priceElement = this.querySelector('.price');
+                    priceElement.classList.add('highlight');
+                    
+                    // Remove the class after animation completes
+                    setTimeout(() => {
+                        priceElement.classList.remove('highlight');
+                    }, 1000);
+                });
+            });
+            
+            // Add click effect to package cards
+            const packageCards = document.querySelectorAll('.package-card');
+            packageCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-8px)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-12px)';
+                    }, 150);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
