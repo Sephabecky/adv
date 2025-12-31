@@ -170,6 +170,13 @@
             padding: 25px 0;
             min-height: calc(100vh - 80px);
         }
+.responsive-img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+}
 
         .dashboard-grid {
             display: grid;
@@ -914,6 +921,8 @@
 
     <!-- Main Content -->
     <main class="main-content container" id="mainContent">
+        <img src="MKULIMA.png" alt="Mkulima Digital Image" class="responsive-img">
+
         <!-- Dashboard will be loaded here -->
     </main>
 
@@ -4791,5 +4800,6 @@ formatFileSize(bytes) {
         }
     });
 </script>
+
 
 
