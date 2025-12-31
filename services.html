@@ -74,7 +74,253 @@
         .price-tag {
             color: var(--accent-green);
             font-weight: 600;
+
+
+             /* Planting Packages Section */
+        #planting-packages {
+            padding: 80px 0;
+            background-color: var(--light-green);
         }
+
+        #planting-packages .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        #planting-packages .section-title h2 {
+            color: var(--primary-green);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        #planting-packages .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-green);
+        }
+
+        #planting-packages .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Packages Grid */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* Package Card */
+        .package-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .package-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .package-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .package-card:hover .package-image img {
+            transform: scale(1.05);
+        }
+
+        .package-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-content h3 {
+            color: var(--primary-green);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-green);
+        }
+
+        /* Services List */
+        .services-list {
+            list-style: none;
+            margin: 0 0 25px 0;
+            padding: 0;
+            flex-grow: 1;
+        }
+
+        .services-list li {
+            margin-bottom: 12px;
+            padding-left: 0;
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.5;
+        }
+
+        .services-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-bullet {
+            color: var(--accent-green);
+            font-weight: bold;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .service-text {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        /* Package Price */
+        .package-price {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 2px solid var(--light-green);
+            text-align: center;
+        }
+
+        .total-price {
+            color: var(--primary-green);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .price-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .packages-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .service-icon-large {
+                font-size: 2.5rem;
+            }
+            
+            #planting-packages .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            #planting-packages {
+                padding: 60px 0;
+            }
+            
+            .package-content {
+                padding: 20px;
+            }
+            
+            .package-content h3 {
+                font-size: 1.3rem;
+            }
+        }
+         @media (max-width: 480px) {
+            .package-image {
+                height: 180px;
+            }
+            
+            .total-price {
+                font-size: 1.6rem;
+            }
+            
+            .services-list li {
+                margin-bottom: 10px;
+            }
+            
+            .service-text {
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .package-card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            
+            .btn {
+                display: none;
+            }
+        }    
     </style>
 </head>
 <body>
@@ -171,153 +417,242 @@
             </div>
         </div>
     </section>
-
-    <!-- Planting Packages -->
-    <section id="seedlings" class="product-category" style="background-color: var(--light-green); padding: 60px 0;">
+<!-- Planting Packages -->
+    <section id="planting-packages">
         <div class="container">
-            <h2 class="category-title">PLANTING PACKAGES</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-img">
+            <div class="section-title">
+                <h2>Planting Packages</h2>
+                <p>Complete professional planting solutions for optimal crop establishment</p>
+            </div>
+            
+            <div class="packages-grid">
+                <!-- Pixie Package -->
+                <div class="package-card">
+                    <div class="package-image">
                         <img src="Pixie Package.png" alt="One Acre Pixie Package">
                     </div>
-                    <div class="product-info">
+                    <div class="package-content">
                         <h3>One Acre Pixie Package</h3>
-                        <B><p class="product-description">SERVICES.</p></B>
-                        <P>.Farm Layout and planting</P>
-                        <p>.Manuaring/mixing</p>
-                        <p>.Digging holes</p>
-                        <p>.Grafted seedlings</p>
-                        <p>.Spray programs</p>
-                        <p>.Technical Agronomical Support</p>
-                        <p>.Pesticides and fungicides</p>
-                        <P></P>
-                        <div class="price-list">
-                            <div class="price-item">
-                               <B> <span class="price-item-name">FOR THE PACKAGE</span></B>
-                                <span class="price-item-price"></span>
-                            </div>
-                            <div class="price-item">
-                                <span class="price-item-name"></span>
-                                <span class="price-item-price"></span>
-                            </div>
-                            <div class="price-item">
-                             <h3><B><span class="price-item-name">104,000 KSH</span></B></h3>
-                               <B> <span class="price-item-price"></span></B>
-                            </div>
+                        <ul class="services-list">
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Farm Layout and Planting</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Manuring/Mixing</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Digging Holes</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Grafted Seedlings</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Spray Programs</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Technical Agronomical Support</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Pesticides and Fungicides</span>
+                            </li>
+                        </ul>
+                        <div class="package-price">
+                            <span class="price-label">Complete Package Price</span>
+                            <div class="total-price">KSH 104,000</div>
+                            <a href="contact.html" class="btn">Order Now</a>
                         </div>
-                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
                     </div>
                 </div>
                 
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="Lemon Package.png" alt="One acre Lemon Package">
+                <!-- Lemon Package -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="Lemon Package.png" alt="One Acre Lemon Package">
                     </div>
-                    <div class="product-info">
+                    <div class="package-content">
                         <h3>One Acre Lemon Package</h3>
-                       <B> <p class="product-description">SERVICES.</p></B>
-                        <P>.Farm Layout and planning</P>
-                        <p>.Manuaring/mixing</p>
-                        <p>.Digging holes</p>
-                        <p>.Seedlings Grafted later</p>
-                        <p>.Spray programs</p>
-                        <p>.Technical Agronomical Support</p>
-                        <p>.Pesticides and fungicides</p>
-                        <div class="price-list">
-                            <div class="price-item">
-                              <B>  <span class="price-item-name">FOR THE PACKAGE</span></B>
-                               <B><H3> <span class="price-item-price">84,000 KSH</span></H3></B>
-                           
-                            </div>
+                        <ul class="services-list">
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Farm Layout and Planning</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Manuring/Mixing</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Digging Holes</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Seedlings Grafted Later</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Spray Programs</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Technical Agronomical Support</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Pesticides and Fungicides</span>
+                            </li>
+                        </ul>
+                        <div class="package-price">
+                            <span class="price-label">Complete Package Price</span>
+                            <div class="total-price">KSH 84,000</div>
+                            <a href="contact.html" class="btn">Order Now</a>
                         </div>
-                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
                     </div>
                 </div>
                 
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="Pawpaw Package.png" alt="Pixie Seedlings">
+                <!-- Pawpaw Package -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="Pawpaw Package.png" alt="One Acre Pawpaw Package">
                     </div>
-                    <div class="product-info">
+                    <div class="package-content">
                         <h3>One Acre Pawpaw Package</h3>
-                        <B><p class="product-description">SERVICES</p></B>
-                        <P>.Farm Layout and planning</P>
-                        <p>.Manuaring/mixing</p>
-                        <p>.Digging holes</p>
-                        <p>.F1 Seddlings</p>
-                        <p>.Spray programs</p>
-                        <p>.Technical Agronomical Support</p>
-                        <p>.Pesticides and fungicides</p>
-                        <div class="price-item">
-                           <B> <span class="price-item-name">FOR THE PACKAGE</span></B>
-                           <H3><B> <span class="price-item-price">225,000 KSH</span></B></H3>
+                        <ul class="services-list">
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Farm Layout and Planning</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Manuring/Mixing</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Digging Holes</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">F1 Seedlings</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Spray Programs</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Technical Agronomical Support</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Pesticides and Fungicides</span>
+                            </li>
+                        </ul>
+                        <div class="package-price">
+                            <span class="price-label">Complete Package Price</span>
+                            <div class="total-price">KSH 225,000</div>
+                            <a href="contact.html" class="btn">Order Now</a>
                         </div>
-                        
-                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
                     </div>
                 </div>
 
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="Mango Package.png" alt="One acre Mango Package">
+                <!-- Mango Package -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="Mango Package.png" alt="One Acre Mango Package">
                     </div>
-                    <div class="product-info">
+                    <div class="package-content">
                         <h3>One Acre Mango Package</h3>
-                       <B> <p class="product-description">SERVICES</p></B>
-                         <P>.Farm Layout and planning</P>
-                        <p>.Manuaring/mixing</p>
-                        <p>.Digging holes</p>
-                        <p>.Grafted Seedlings</p>
-                        <p>.Spray programs</p>
-                        <p>.Technical Agronomical Support</p>
-                        <p>.Pesticides and fungicides</p>
-                        <div class="price-list">
-                            <div class="price-item">
-                               <B> <span class="price-item-name">FOR THE PACKAGE</span></B>
-                                <H3><B><span class="price-item-price">86,000 KSH</span></B></H3>
-                            </div>
-                    
+                        <ul class="services-list">
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Farm Layout and Planning</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Manuring/Mixing</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Digging Holes</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Grafted Seedlings</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Spray Programs</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Technical Agronomical Support</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Pesticides and Fungicides</span>
+                            </li>
+                        </ul>
+                        <div class="package-price">
+                            <span class="price-label">Complete Package Price</span>
+                            <div class="total-price">KSH 86,000</div>
+                            <a href="contact.html" class="btn">Order Now</a>
                         </div>
-                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
                     </div>
                 </div>
 
-
-                 <div class="product-card">
-                    <div class="product-img">
-                        <img src="Avocado Package.png" alt="One acre Avocado Package">
+                <!-- Avocado Package -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img src="Avocado Package.png" alt="One Acre Avocado Package">
                     </div>
-                    <div class="product-info">
+                    <div class="package-content">
                         <h3>One Acre Avocado Package</h3>
-                       <B> <p class="product-description">SERVICES</p></B>
-                         <P>.Farm Layout and planning</P>
-                        <p>.Manuaring/mixing</p>
-                        <p>.Digging holes</p>
-                        <p>.Grafted Seedlings</p>
-                        <p>.Spray programs</p>
-                        <p>.Technical Agronomical Support</p>
-                        <p>.Pesticides and fungicides</p>
-                        <div class="price-list">
-                            <div class="price-item">
-                               <B> <span class="price-item-name">FOR THE PACKAGE</span></B>
-                                <H3><B><span class="price-item-price">104,000 KSH</span></B></H3>
-                            </div>
-                    
+                        <ul class="services-list">
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Farm Layout and Planning</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Manuring/Mixing</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Digging Holes</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Grafted Seedlings</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Spray Programs</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Technical Agronomical Support</span>
+                            </li>
+                            <li>
+                                <span class="service-bullet">•</span>
+                                <span class="service-text">Pesticides and Fungicides</span>
+                            </li>
+                        </ul>
+                        <div class="package-price">
+                            <span class="price-label">Complete Package Price</span>
+                            <div class="total-price">KSH 104,000</div>
+                            <a href="contact.html" class="btn">Order Now</a>
                         </div>
-                        <a href="contact.html" class="btn" style="margin-top: 20px;">Order Now</a>
                     </div>
                 </div>
-
-
-
-                
             </div>
         </div>
     </section>
-
-  
-
                         
            
 
@@ -371,6 +706,7 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
