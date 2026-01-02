@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const payload = {
-      fullName: document.getElementById("contactName").value.trim(),
-      phone: document.getElementById("contactPhone").value.trim(),
-      email: document.getElementById("contactEmail").value.trim() || "Not provided",
-      subject: document.getElementById("contactSubject").value,
-      message: document.getElementById("contactMessage").value.trim(),
+      FullName: document.getElementById("contactName").value.trim(),
+      PhoneNumber: document.getElementById("contactPhone").value.trim(),
+      Emailaddress: document.getElementById("contactEmail").value.trim() || "Not provided",
+      Subject: document.getElementById("contactSubject").value,
+      Message: document.getElementById("contactMessage").value.trim(),
     };
 
     // Simple front-end validation
