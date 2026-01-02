@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    // Build payload to match backend field names
     const payload = {
       fullname: document.getElementById("contactName").value.trim(),
       phonenumber: document.getElementById("contactPhone").value.trim(),
@@ -13,13 +14,32 @@ document.addEventListener("DOMContentLoaded", () => {
       message: document.getElementById("contactMessage").value.trim(),
     };
 
-    console.log("Payload to send:", payload);
+    // Check if Terms checkbox is checked
+    const termsChecked = document.getElementById("contactTerms").checked;
 
-    // ✅ Use correct property names for validation
-    if (!payload.fullname || !payload.phonenumber || !payload.subject || !payload.message) {
-      alert("Please fill in all required fields.");
+    // Front-end validation
+    if (!payload.fullname) {
+      alert("Please enter your full name.");
       return;
     }
+    if (!payload.phonenumber) {
+      alert("Please enter your phone number.");
+      return;
+    }
+    if (!payload.subject) {
+      alert("Please select a subject.");
+      return;
+    }
+    if (!payload.message) {
+      alert("Please enter a message.");
+      return;
+    }
+    if (!termsChecked) {
+      alert("You must agree to the Terms of Service and Privacy Policy.");
+      return;
+    }
+
+    console.log("Payload to send:", payload);
 
     try {
       const response = await fetch("https://agronomy-backend-ehk1.onrender.com/api/contact", {
