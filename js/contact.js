@@ -5,16 +5,19 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    // Collect form values
     const payload = {
-      FullName: document.getElementById("contactName").value.trim(),
-      PhoneNumber: document.getElementById("contactPhone").value.trim(),
-      Emailaddress: document.getElementById("contactEmail").value.trim() || "Not provided",
-      Subject: document.getElementById("contactSubject").value,
-      Message: document.getElementById("contactMessage").value.trim(),
+      fullname: document.getElementById("contactName").value.trim(),
+      phonenumber: document.getElementById("contactPhone").value.trim(),
+      emailaddress: document.getElementById("contactEmail").value.trim() || "Not provided",
+      subject: document.getElementById("contactSubject").value,
+      message: document.getElementById("contactMessage").value.trim(),
     };
 
-    // Simple front-end validation
-    if (!payload.fullName || !payload.phone || !payload.subject || !payload.message) {
+    console.log("Payload to send:", payload); // Debug payload in console
+
+    // Front-end validation
+    if (!payload.fullname || !payload.phonenumber || !payload.subject || !payload.message) {
       alert("Please fill in all required fields.");
       return;
     }
@@ -23,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch("https://agronomy-backend-ehk1.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -33,12 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      const data = await response.json();
+      console.log("Backend response:", data);
+
       alert("Message sent successfully!");
       form.reset();
-
     } catch (err) {
       console.error("Network error:", err);
-      alert("Server not reachable");
+      alert("Server not reachable. Please try again later.");
     }
   });
 });
