@@ -40,8 +40,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     console.log("Payload to send:", payload);
+console.log({
+  fullname: payload.fullname,
+  phonenumber: payload.phonenumber,
+  emailaddress: payload.emailaddress,
+  subject: payload.subject,
+  message: payload.message,
+  termsChecked: termsChecked
+});
 
     try {
+      
       const response = await fetch("https://agronomy-backend-ehk1.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
