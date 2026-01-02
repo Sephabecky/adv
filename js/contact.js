@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Payload to send:", payload);
 
     try {
-      const response = await fetch("https://agronomy-backend-ehk1.onrender.com/api/contact", {
+      //const response = await fetch("https://agronomy-backend-ehk1.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
