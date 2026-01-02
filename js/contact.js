@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Collect form values
     const payload = {
       fullname: document.getElementById("contactName").value.trim(),
       phonenumber: document.getElementById("contactPhone").value.trim(),
@@ -14,9 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
       message: document.getElementById("contactMessage").value.trim(),
     };
 
-    console.log("Payload to send:", payload); // Debug payload in console
+    console.log("Payload to send:", payload);
 
-    // Front-end validation
+    // ✅ Use correct property names for validation
     if (!payload.fullname || !payload.phonenumber || !payload.subject || !payload.message) {
       alert("Please fill in all required fields.");
       return;
